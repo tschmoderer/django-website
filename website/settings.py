@@ -23,9 +23,9 @@ with open('secret_key.txt') as f:
 	SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['.iathena.fr', '77.204.76.185']
+ALLOWED_HOSTS = []
 
 ADMINS = (('Timothee Schmoderer', 'webmaster@iathena.fr'),)
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
 ]
 
 MIDDLEWARE = [
