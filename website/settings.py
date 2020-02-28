@@ -25,7 +25,7 @@ with open('secret_config.txt') as f:
 	SECRET_KEY = f.readline()
 	DEBUG = f.readline()
 
-ALLOWED_HOSTS = ['iathena.fr', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['www.iathena.fr', 'iathena.fr', 'localhost', '127.0.0.1']
 
 ADMINS   = (('Timothee Schmoderer', 'webmaster@iathena.fr'),)
 MANAGERS = ADMINS
