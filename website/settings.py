@@ -25,9 +25,11 @@ with open('secret_key.txt') as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['iathena.fr', 'localhost', '127.0.0.1']
 
-ADMINS = (('Timothee Schmoderer', 'webmaster@iathena.fr'),)
+ADMINS   = (('Timothee Schmoderer', 'webmaster@iathena.fr'),)
+MANAGERS = ADMINS
+
 # Application definition
 
 INSTALLED_APPS = [
