@@ -19,11 +19,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('secret_key.txt') as f:
-	SECRET_KEY = f.read().strip()
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+with open('secret_config.txt') as f:
+	SECRET_KEY = f.readline()
+	DEBUG = f.readline()
 
 ALLOWED_HOSTS = ['iathena.fr', 'localhost', '127.0.0.1']
 
