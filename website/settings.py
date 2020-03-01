@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+# from debug import *
+import yaml 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,14 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
 
-with open('secret_config.txt') as f:
-	SECRET_KEY = f.readline()
-	DEBUG = f.readline()
-
-if DEBUG == 0: 
-	DEBUG = False
-else:
-	DEBUG = True
+with open("config.yml", 'r') as ymlfile:
+    cfg = yaml.load(ymlfile)
+    
+SECRET_KEY = cfg['key']
+DEBUG      = cfg['dbg']
 
 ALLOWED_HOSTS = ['www.iathena.fr', 'iathena.fr', 'localhost', '127.0.0.1']
 
