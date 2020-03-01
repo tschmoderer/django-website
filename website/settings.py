@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 
 with open("config.yml", 'r') as ymlfile:
-    cfg = yaml.load(ymlfile)
+    cfg = yaml.load(ymlfile, Loader = yaml.BaseLoader)
     
 SECRET_KEY = cfg['key']
 DEBUG      = cfg['dbg']
