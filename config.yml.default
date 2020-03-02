@@ -1,0 +1,2 @@
+key: xxx # Insert SECRET KEY, it can be generated from https://djecrety.ir/ 
+bdg:     # Set to true or false depending on developement or production
