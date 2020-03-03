@@ -1,8 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
 
 <html lang="en">
     <head>
-        <link rel = "stylesheet" href="/media/css/style.css" />
+        {% include "header/head.html" %}
+        <link rel="stylesheet" type="text/css" href="{% static '_footer.css' %}" />
         <title>{% block title %}My Homepage{% endblock%}</title>
     </head>
 
@@ -22,9 +25,7 @@
         </section>
 
         <div class="page__footer">
-            <footer>
-                {% include footer/footer.html %}
-            </footer>
+            {% include "footer/foot.html" %}
         </div>
     </body>
 </html>
