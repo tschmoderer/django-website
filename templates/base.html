@@ -2,30 +2,51 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" class="no-js">
     <head>
-        {% include "header/head.html" %}
-        <link rel="stylesheet" type="text/css" href="{% static '_footer.css' %}" />
-        <title>{% block title %}My Homepage{% endblock%}</title>
+        {% include "header/head.html" %}        
     </head>
 
     <body>
-        <header>Homepage</header>
-        <nav>
-            {% block nav %}
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-            {% endblock %}
-        </nav>
+        {# Top Menu #}
+        <div class="masthead">
+            {% include "menu.html" %}
+        </div>
 
-        <section id="content">
-            {% block content %} {% endblock %}
-        </section>
+        {# Main Part #}
+        <div id="main" role="main">
+            {# Sidebar profil #}
 
+            {% include "profil.html" %}
+
+            {# Main Content #}
+
+            <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+                {% comment %}
+                <meta itemprop="headline" content="Home">
+                <meta itemprop="description" content="About me">
+                {% endcomment %}
+
+                <div class="page__inner-wrap">
+                    <header>
+                        <h2 class="page__title" itemprop="headline">{% block title %}{% endblock %} </h2>
+                    </header>
+                    <section class="page__content" itemprop="text">
+                        {% block content %} {% endblock %}
+                    </section>
+                </div>
+            </article>
+
+        </div>
+
+        {# Footer #}
         <div class="page__footer">
             {% include "footer/foot.html" %}
         </div>
+
     </body>
 </html>
+
+{% comment Example HTML %}
+
+{% endcomment %}
