@@ -1,4 +1,5 @@
 {% load static %}
+{% load sass_tags %}
 
 <meta charset="utf-8">
 
@@ -21,16 +22,22 @@
 {# endcomment #}
 
 {# LOAD STYLE #}
-<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/academicons.min.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/_footer.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/academicons.min.css' %}" />
+{# <link rel="stylesheet" type="text/css" href="{% sass_src 'css/main.scss' %}" /> #}
+{# <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"> #}
+
+{# FAVICON #}
+<link rel="icon" type="image/png" sizes="16x16"   href="{% static 'css/icon/favicon-16x16.png' %}" />
+<link rel="icon" type="image/png" sizes="32x32"   href="{% static 'css/icon/favicon-32x32.png' %}" />
+
+
+
+
+
 
 
 
 {% comment example head %}
-
-
 <link href="https://tschmoderer.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Timothée Schmoderer Feed">
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -56,6 +63,8 @@
 <link rel="icon" type="image/png" href="https://tschmoderer.github.io/images/android-chrome-192x192.png?v=M44lzPylqQ" sizes="192x192">
 <link rel="icon" type="image/png" href="https://tschmoderer.github.io/images/favicon-96x96.png?v=M44lzPylqQ" sizes="96x96">
 <link rel="icon" type="image/png" href="https://tschmoderer.github.io/images/favicon-16x16.png?v=M44lzPylqQ" sizes="16x16">
+
+
 <link rel="manifest" href="https://tschmoderer.github.io/images/manifest.json?v=M44lzPylqQ">
 <link rel="mask-icon" href="https://tschmoderer.github.io/images/safari-pinned-tab.svg?v=M44lzPylqQ" color="#000000">
 <link rel="shortcut icon" href="/images/favicon.ico?v=M44lzPylqQ">
