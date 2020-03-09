@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block nav-about %}<strong class="nav-active">Timothée Schmoderer</strong>{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<p>
+    Welcome on my web page. 
+    I am currently a Ph.D. student in nonlinear control theory under the supervision of 
+    <a href="http://lmi.insa-rouen.fr/membres/9-membres/professeurs/19-respondek-witold.html">Witold Respondek</a>
+    from <a href="http://lmi.insa-rouen.fr/">LMI</a> (Rouen) 
+    and <a href="https://www.ljll.math.upmc.fr/trelat/">Emmanuel Trélat</a>
+    from <a href="https://www.ljll.math.upmc.fr/">LJLL</a> (Paris). 
+</p>
+
+<h2>Interest</h2>
+
+<p>
+    My PhD research are of two kind. 
+    First I want to deeply understand nonlinear dynamical control systems. 
+    Using the language of differential geometry my purpose is to classified quadratic nonlinear control systems. 
+    During his PhD <a href="http://lmi.insa-rouen.fr/membres/9-membres/professeurs/19-respondek-witold.html">Witold Respondek</a> classified non linear dynamical system that are equivalent (up to a state diffeomorphism or up to feedback action) to a controllable linear system. 
+    We want to extand this results and found conditions for a system to be equivalent to a system with a prodcut of control.
+</p>
+
+<p>
+    On the other hand, I want to propose an improved version of the continuation method, developped first by 
+    <a href="http://www.l2s.centralesupelec.fr/perso/yacine.chitour">Yacine Chitour</a>. 
+    This method was developped to compute optimal control. 
+    However the method assume that we can avoid the singular set of the system. This is a practical strong assumptions. 
+    With <a href="https://www.ljll.math.upmc.fr/trelat/">Emmanuel Trélat</a> we propose a modified algorithm giving an approximation of the optimal control but dealing with the singular set of the system.
+</p>
+
+<h2>Hobbies</h2> 
+
+<p>
+    I am really interested in game theory, I myself enjoy playing online chess on <a href="https://lichess.org/@/tschmoderer">Lichess</a>. 
+    I'm always up for a game, so if you see me online, drop a challenge! 
+    In my free time, I am developping a chess engine <a href="https://github.com/tschmoderer/iathena">iathena</a> mixing alpha-beta search and Monte-Carlo search. 
+    Feel free to challenge <a href="https://lichess.org/@/iathena">iathena</a> on <a href="https://lichess.org/@/iathena">Lichess</a>! 
+    If you want to get involved in this journey, check the <a href="">documentation</a>.
+</p>
+
+<p>
+    Always great games on <a href="https://lichess.org/">Lichess</a>TV: 
+    <div class="center">
+        <script src="https://lichess.org/tv/embed?theme=auto&bg=auto"></script>
+    </div>
+</p>
+
+{% endblock %}
