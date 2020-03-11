@@ -1,5 +1,10 @@
 #-*- coding: utf-8 -*-
 from django.shortcuts import render
+from blog.models import Article
 
 def home(request):
-	return render(request, 'blog/about.html')
+	articles = Article.objects.all()
+	return render(request, 'blog/home.html', {'last_articles':articles})
+
+def read(request, id):
+	pass
