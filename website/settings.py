@@ -128,16 +128,18 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets/'),
 ]
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+]
+
 APPEND_SLASH = True
+
+# Sass settings
 
 SASS_PROCESSOR_ROOT = STATIC_ROOT
 
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(BASE_DIR, 'assets/sass/'),
-]
-
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'sass_processor.finders.CssFinder',
 ]
