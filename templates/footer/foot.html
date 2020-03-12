@@ -8,6 +8,10 @@
       </ul>
   </div>
   <div class="page__footer-copyright">
-      &copy; {% now "Y" %} Timothée Schmoderer.
+      &copy; {% now "Y" %} Timothée Schmoderer. 
+      {# if login #} {# endif #} 
+      <a href="{% url 'login' %}">Login</a>
+      {# if logout #} {# endif #}
+      <a href="{% url 'logout' %}">Logout</a>
   </div>
 </footer>
