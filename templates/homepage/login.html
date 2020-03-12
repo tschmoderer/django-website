@@ -1,31 +1,3 @@
-
-<!DOCTYPE html>
-
-<html lang="en" class="no-js">
-    <head>
-    </head>
-
-    <body>
-        <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-            {% comment %}
-            <meta itemprop="headline" content="Home">
-            <meta itemprop="description" content="About me">
-            {% endcomment %}
-
-            <div class="page__inner-wrap">
-                <header>
-                    <h2 class="page__title" itemprop="headline">{% block title %}{% endblock %} </h2>
-                </header>
-                <section class="page__content" itemprop="text">
-                    {% block content %} {% endblock %}
-                </section>
-            </div>
-        </article>
-    </body>
-</html>
-
-{%comment%}
-
 {% extends "base.html" %}
 {% block content %}
 
@@ -60,7 +32,6 @@
 </form>
 
 {# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+{#<p><a href="{% url 'password_reset' %}">Lost password?</a></p>#}
 
 {% endblock %}
-{%endcomment%}
