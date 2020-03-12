@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+{% block title %}Edit - Home{% endblock %}
+
+{% block content %}
+{% for obj in homepage %}
+{{ obj.title }} </br>
+
+<div class="content-markdown">
+    {{ obj.content }} </br>
+</div>
+
+{% endfor %}
+{% endblock %}
