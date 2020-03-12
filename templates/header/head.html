@@ -30,12 +30,21 @@
 <link rel="icon" type="image/png" sizes="16x16"   href="{% static 'css/icon/favicon-16x16.png' %}" />
 <link rel="icon" type="image/png" sizes="32x32"   href="{% static 'css/icon/favicon-32x32.png' %}" />
 
+{# SCRIPTS #}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.8.0/marked.min.js" integrity="sha256-fIsvyYkI1qQV1tu1PdlM4FF43kW76YCnCcl/xJCD3Fc=" crossorigin="anonymous"></script>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".content-markdown").each(function(){
+            $(this).html(marked($(this).text()))
+        })
+    })
+</script>
 
-
-
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.1/es5/sre/sre_browser.min.js" integrity="sha256-tIvJn4Y2mlElbAYvH9cEDNB2XvVO/XlSsIJNgG8lkds=" crossorigin="anonymous"></script>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } }); </script>
 
 {% comment example head %}
 <link href="https://tschmoderer.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Timothée Schmoderer Feed">
@@ -72,8 +81,5 @@
 <meta name="msapplication-TileImage" content="https://tschmoderer.github.io/images/mstile-144x144.png?v=M44lzPylqQ">
 <meta name="msapplication-config" content="https://tschmoderer.github.io/images/browserconfig.xml?v=M44lzPylqQ">
 <meta name="theme-color" content="#ffffff">
-<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
-<script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } }); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <!-- end custom head snippets -->
 {% endcomment %}
