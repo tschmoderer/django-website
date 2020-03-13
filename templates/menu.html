@@ -33,9 +33,7 @@
                 {% comment %}
                 <li class="masthead__menu-item">{% block nav-publication %}<a href="{% url 'publications' %}">Publications</a>{% endblock %}</li>
                 <li class="masthead__menu-item">{% block nav-teaching %}   <a href="{% url 'teaching' %}">Teaching</a>{% endblock %}</li>
-                {% endcomment %}
-                <li class="masthead__menu-item">{% block nav-blog %}       <a href="{% url 'blog' %}">Blog Posts</a>{% endblock %}</li>
-                {% comment %}
+                <li class="masthead__menu-item">{% block nav-blog %}       <a href="{% url 'blog' username %}">Blog Posts</a>{% endblock %}</li>
                 <li class="masthead__menu-item">{% block nav-cv %}         <a href="{% url 'cv' %}">CV</a>{% endblock %}</li>
                 <li class="masthead__menu-item">{% block nav-iathena %}    <a href="{% url 'iathena' %}">IATHENA</a>{% endblock %}</li>
                 <li class="masthead__menu-item">{% block nav-contact %}    <a href="{% url 'contact' %}">Contact</a>{% endblock %}</li>

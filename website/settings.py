@@ -133,6 +133,8 @@ STATICFILES_FINDERS = [
     'sass_processor.finders.CssFinder',
 ]
 
+# Misc settings 
+
 APPEND_SLASH = True
 
 # Sass settings
@@ -142,3 +144,9 @@ SASS_PROCESSOR_ROOT = STATIC_ROOT
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(BASE_DIR, 'assets/sass/'),
 ]
+
+# Login Settings 
+# TODO: change for data base pseudo instead
+LOGOUT_REDIRECT_URL = '/tschmoderer/'
+LOGIN_REDIRECT_URL = '/tschmoderer/'
+LOGIN_URL = '/'
