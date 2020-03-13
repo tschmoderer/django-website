@@ -2,10 +2,20 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .models import Homepage
+from .models import Homepage, Profile
 
-def home(request):
-	return render(request, 'homepage/home.html')
+def home(request, username = None):
+	if not username == None: 
+		# profile  = Profile.objects.filter(user__username = username)[0]
+		# homepage = Homepage.objects.filter(user__username = username)[0]
+		profile = None
+		homepage = None
+	else:
+		profile = None
+		homepage = None
+	# if tschmoderer --> return the right profile
+	# for the moment default 
+	return render(request, 'homepage/home.html', {'profile': profile, 'homepage': homepage, 'username':username})
 
 def edit(request):
 	query = Homepage.objects.all()
