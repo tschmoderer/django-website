@@ -12,6 +12,12 @@
 ### H3
 </div>
 
+{% if user.is_authenticated %} 
+Welcomme {{ user }}
+{% else %}
+You are not login
+{% endif %}
+
 <p>
     Welcome on my web page. 
     I am currently a Ph.D. student in nonlinear control theory under the supervision of 
