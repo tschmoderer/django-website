@@ -25,16 +25,16 @@ class Profile(models.Model):
 
     birthday   = models.DateField(verbose_name='birthday', default=date.today)
 
-    place      = models.CharField(verbose_name='place',  max_length=150, blank=True, default="NoWhere")
+    place      = models.CharField(verbose_name='place',  max_length=150, blank=True, default='')
 
-    twitter    = models.CharField(verbose_name='twitter user name',         max_length=30, blank=True)
-    github     = models.CharField(verbose_name='github user name',          max_length=30, blank=True)
-    linkedin   = models.CharField(verbose_name='linkedin user name',        max_length=30, blank=True)
-    youtube    = models.CharField(verbose_name='youtube user name',         max_length=30, blank=True)
-    scholar    = models.CharField(verbose_name='google scholar user name',  max_length=30, blank=True)
-    orcid      = models.CharField(verbose_name='orcid user name',           max_length=30, blank=True)
-    arxiv      = models.CharField(verbose_name='arxiv user name',           max_length=30, blank=True)
-    lichess    = models.CharField(verbose_name='lichess user name',         max_length=30, blank=True)
+    twitter    = models.CharField(verbose_name='twitter user name',         max_length=30, blank=True, default='')
+    github     = models.CharField(verbose_name='github user name',          max_length=30, blank=True, default='')
+    linkedin   = models.CharField(verbose_name='linkedin user name',        max_length=30, blank=True, default='')
+    youtube    = models.CharField(verbose_name='youtube user name',         max_length=30, blank=True, default='')
+    scholar    = models.CharField(verbose_name='google scholar user name',  max_length=30, blank=True, default='')
+    orcid      = models.CharField(verbose_name='orcid user name',           max_length=30, blank=True, default='')
+    arxiv      = models.CharField(verbose_name='arxiv user name',           max_length=30, blank=True, default='')
+    lichess    = models.CharField(verbose_name='lichess user name',         max_length=30, blank=True, default='')
 
     def __str__(self):
         return u"%s" % self.user.username
