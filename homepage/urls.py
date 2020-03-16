@@ -11,7 +11,8 @@ urlpatterns = [
 	# re_path(r'^logout/', auth_views.LogoutView.as_view(template_name='homepage/home.html'), name='logout'),
 
 	# path(r'(?P<username>[^/]+)/', views.home, name='home'),
-	path('', views.home, name='home'),
+	# path('', views.home, name='home'),
+	path('', views.default, name='default'),
 	path('<str:username>/', views.home, name='home'),
 	path('<str:username>/blog/', include('blog.urls')),
 ]

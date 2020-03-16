@@ -1,15 +1,22 @@
 #-*- coding: utf-8 -*-
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .models import Homepage, Profile
 
+def default(request): 
+	# temporary
+	return redirect('/tschmoderer/')
+
 def home(request, username = None):
 	if not username == None: 
-		# profile  = Profile.objects.filter(user__username = username)[0]
-		# homepage = Homepage.objects.filter(user__username = username)[0]
-		profile = None
-		homepage = None
+	#    try:
+    # 	   obj = MyModel.objects.get(pk=1)
+    # except MyModel.DoesNotExist:
+    #    raise Http404("No MyModel matches the given query.")
+
+		profile  = get_object_or_404(Profile, user__username =  username)
+		homepage = get_object_or_404(Homepage, user__username =  username)
 	else:
 		profile = None
 		homepage = None

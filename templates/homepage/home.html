@@ -15,10 +15,11 @@
 <div>
     Profile: {{ profile }} </br>
     Username: {{ username }}
+    {{ homepage }}
 </div>
 
 {% if not user.is_authenticated %} 
-
+{# comment #}
 <p>
     Welcome on my web page. 
     I am currently a Ph.D. student in nonlinear control theory under the supervision of 
@@ -67,7 +68,7 @@
         </iframe>   
     </div>
 </p>
-
+{# endcomment #}
 {% else %}
 
 Eddit your home page.
