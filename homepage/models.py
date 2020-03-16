@@ -1,14 +1,13 @@
 #-*- coding: utf-8 -*-
 from django.contrib.auth.models import User
 from django.db import models
-# from markdownx.models import MarkdownxField
+from markdownx.models import MarkdownxField
 from datetime import date
 
 class Homepage(models.Model): 
     user       = models.OneToOneField(User, on_delete=models.PROTECT)
     title      = models.CharField(max_length=100)
-    content    = models.TextField(blank=True)
-#    content2   = MarkdownxField(blank=True)
+    content    = MarkdownxField(blank=True)
     date_modif = models.DateTimeField(auto_now_add=False, auto_now=True, verbose_name="Modification date")
 
     def __unicode__(self):

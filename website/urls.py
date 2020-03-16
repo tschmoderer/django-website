@@ -18,6 +18,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('markdownx/', include('markdownx.urls')),
     path('', include('homepage.urls')),
     # re_path(r'^tschmoderer/', include('homepage.urls')), # change for a username stored in the database
     # re_path(r'^(?P<username>,+)/', include('homepage.urls')),

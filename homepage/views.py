@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Homepage, Profile
+from .forms import HomepageForm, ProfileForm
 
 default_str = '/tschmoderer/'
 
@@ -57,4 +58,21 @@ def home(request, username = None):
 
 def edit_homepage(request, username = None):
 	homepage = get_object_or_404(Homepage, user__username =  username)
-	return render(request, 'homepage/edit.html', {'homepage': homepage})
+	profile  = get_object_or_404(Profile, user__username =  username)
+
+	if request.method == 'POST': 
+		if 'homepage_form' in request.POST:
+			form_homepage = HomepageForm(request.POST, instance=homepage)
+			form_profile = ProfileForm(instance=profile)
+			if form_homepage.is_valid():
+				form_homepage.save()
+		elif 'profile_form' in request.POST: 
+			form_profile = ProfileForm(request.POST, instance=profile)
+			form_homepage = HomepageForm(instance=homepage)
+			if form_profile.is_valid():
+				form_profile.save()
+	else:
+		form_homepage = HomepageForm(instance=homepage)
+		form_profile = ProfileForm(instance=profile)
+	
+	return render(request, 'homepage/edit.html', {'form_profile': form_profile, 'form_homepage': form_homepage})

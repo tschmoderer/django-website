@@ -1,25 +1,5 @@
 {% load static %}
 
-{% if user.is_authenticated %} 
-
-<div class="sidebar sticky">
-    <div itemscope itemtype="http://schema.org/Person">
-        <div class="author__avatar"> <img src="{% static 'medias/profil.jpg' %}" alt="Timothée Schmoderer" /> </div>
-        <div class="author__content">
-            <h3 class="author__name">Timothée Schmoderer</h3>
-            <p class="author__bio">Phd. Student in Nonlinear Control Theory.</p>
-        </div>
-        <div class="author__urls-wrapper">
-            <button class="btn btn--inverse">Follow</button>
-            <ul class="author__urls social-icons">
-
-            </ul>
-        </div>
-    </div>
-</div>
-
-{% else %}
-
 <div class="sidebar sticky">
     <div itemscope itemtype="http://schema.org/Person">
         <div class="author__avatar"> <img src="{% static 'medias/profil.jpg' %}" alt="Timothée Schmoderer" /> </div>
@@ -43,5 +23,3 @@
         </div>
     </div>
 </div>
-
-{% endif %}

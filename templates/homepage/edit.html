@@ -1,5 +1,22 @@
 {% extends "base.html" %}
 
+{% block profil %}
+{% if user.is_authenticated %} 
+
+<form class="edit-profil" action="{% url 'homepage:edit' user.username %}" method="POST">
+    {%csrf_token%}
+    {{ form_profile }}
+    <input type="submit" value="Valid" name="profile_form">
+</form>
+
+{% else %}
+
+You don't have the credential to eddit this page. 
+To be changed by decorator @login_required
+
+{% endif %}
+{% endblock %}
+
 
 {% block title %}Edit your homepage{% endblock %}
 
@@ -8,8 +25,8 @@
 
 <form class="edit-homepage" action="{% url 'homepage:edit' user.username %}" method="POST">
     {%csrf_token%}
-    {{ form }}
-    <input type="submit" value="Valid">
+    {{ form_homepage }}
+    <input type="submit" value="Valid" name="homepage_form">
 </form>
 
 {% else %}

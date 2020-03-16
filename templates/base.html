@@ -16,8 +16,10 @@
         {# Main Part #}
         <div id="main" role="main">
             {# Sidebar profil #}
-
+            
+            {% block profil %}
             {% include "profil.html" %}
+            {% endblock %}
 
             {# Main Content #}
 
