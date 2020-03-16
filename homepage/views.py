@@ -1,12 +1,43 @@
 #-*- coding: utf-8 -*-
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Homepage, Profile
+
+default_str = '/tschmoderer/'
 
 def default(request): 
 	# temporary
-	return redirect('/tschmoderer/')
+	return redirect(default_str)
+
+def login_view(request):
+	if request.method == 'POST':
+		form = AuthenticationForm(data = request.POST)
+		if form.is_valid():
+			user = form.get_user()
+			login(request, user)
+			return redirect('/' + str(user.username) + '/')
+	else:
+		form = AuthenticationForm()
+	return render(request, 'homepage/login.html', {'form': form})		
+
+def logout_view(request): 
+	if request.method == 'POST': 
+		logout(request)
+		return redirect(default_str)
+
+def signup_view(request): 
+	if request.method == 'POST':
+		form = UserCreationForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			Profile(user  = user).save()
+			Homepage(user = user).save()
+			login(request, user)
+			return redirect('/' + str(user.username) + '/')
+	else:
+		form = UserCreationForm()
+	return render(request, 'homepage/signup.html', {'form': form})
 
 def home(request, username = None):
 	if not username == None: 
@@ -24,23 +55,6 @@ def home(request, username = None):
 	# for the moment default 
 	return render(request, 'homepage/home.html', {'profile': profile, 'homepage': homepage, 'username':username})
 
-def edit(request):
-	query = Homepage.objects.all()
-	context = {
-		"homepage": query,
-	}
-	return render(request, 'homepage/edit.html', context)
-
-def signup(request):
-	if request.method == 'POST':
-		form = UserCreationForm(request.POST)
-		if form.is_valid():
-			form.save()
-			username = form.cleaned_data.get('username')
-			raw_password = form.cleaned_data.get('password1')
-			user = authenticate(username=username, password=raw_password)
-			login(request, user)
-			return redirect('home')
-	else:
-		form = UserCreationForm()
-	return render(request, 'signup.html', {'form': form})
+def edit_homepage(request, username = None):
+	homepage = get_object_or_404(Homepage, user__username =  username)
+	return render(request, 'homepage/edit.html', {'homepage': homepage})

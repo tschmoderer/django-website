@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 
 
-{% block title %}Edit - Home{% endblock %}
+{% block title %}Edit your homepage{% endblock %}
 
 {% block content %}
-{% for obj in homepage %}
-{{ obj.title }} </br>
+{% if user.is_authenticated %} 
 
-<div class="content-markdown">
-    {{ obj.content }} </br>
-</div>
+<form class="edit-homepage" action="{% url 'homepage:edit' user.username %}" method="POST">
+    {%csrf_token%}
+    {{ form }}
+    <input type="submit" value="Valid">
+</form>
 
-{% endfor %}
+{% else %}
+
+You don't have the credential to eddit this page. 
+To be changed by decorator @login_required
+
+{% endif %}
 {% endblock %}
