@@ -134,6 +134,12 @@ STATICFILES_FINDERS = [
     'sass_processor.finders.CssFinder',
 ]
 
+
+# Media settings
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL  ='/media/'
+
 # Misc settings 
 
 APPEND_SLASH = True

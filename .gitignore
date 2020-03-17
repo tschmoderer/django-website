@@ -9,3 +9,5 @@ db.sqlite3
 config.yml
 
 **/migrations/**
+**/media/**
+!media/profil/default-profil.jpg

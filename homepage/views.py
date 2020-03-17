@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Homepage, Profile
-from .forms import HomepageForm, ProfileForm
+from .forms import HomepageForm, ProfileForm, UserForm
+from django.contrib.auth.decorators import login_required
 
 default_str = '/tschmoderer/'
 
@@ -23,9 +24,10 @@ def login_view(request):
 	return render(request, 'homepage/login.html', {'form': form})		
 
 def logout_view(request): 
-	if request.method == 'POST': 
+	if request.method == 'POST':
+		username = request.user.username 
 		logout(request)
-		return redirect(default_str)
+		return redirect('/' + str(username) + '/')
 
 def signup_view(request): 
 	if request.method == 'POST':
@@ -42,37 +44,39 @@ def signup_view(request):
 
 def home(request, username = None):
 	if not username == None: 
-	#    try:
-    # 	   obj = MyModel.objects.get(pk=1)
-    # except MyModel.DoesNotExist:
-    #    raise Http404("No MyModel matches the given query.")
-
-		profile  = get_object_or_404(Profile, user__username =  username)
+		profile  = get_object_or_404(Profile,  user__username =  username)
 		homepage = get_object_or_404(Homepage, user__username =  username)
 	else:
-		profile = None
+		profile  = None
 		homepage = None
-	# if tschmoderer --> return the right profile
-	# for the moment default 
-	return render(request, 'homepage/home.html', {'profile': profile, 'homepage': homepage, 'username':username})
 
+	return render(request, 'homepage/home.html', {'profile': profile, 'homepage': homepage})
+
+@login_required
 def edit_homepage(request, username = None):
 	homepage = get_object_or_404(Homepage, user__username =  username)
-	profile  = get_object_or_404(Profile, user__username =  username)
+	profile  = get_object_or_404(Profile,  user__username =  username)
 
 	if request.method == 'POST': 
 		if 'homepage_form' in request.POST:
-			form_homepage = HomepageForm(request.POST, instance=homepage)
-			form_profile = ProfileForm(instance=profile)
-			if form_homepage.is_valid():
-				form_homepage.save()
+			hform = HomepageForm(request.POST, instance=homepage)
+			pform = ProfileForm(instance=profile)
+			uform = UserForm(instance=profile.user)
+			if hform.is_valid():
+				hform.save()
+			
 		elif 'profile_form' in request.POST: 
-			form_profile = ProfileForm(request.POST, instance=profile)
-			form_homepage = HomepageForm(instance=homepage)
-			if form_profile.is_valid():
-				form_profile.save()
+			uform = UserForm(request.POST, instance=profile.user)
+			pform = ProfileForm(request.POST, instance=profile, files=request.FILES)
+			hform = HomepageForm(instance=homepage)
+			if pform.is_valid() and uform.is_valid():
+				user    = uform.save()
+				profile = pform.save(commit=False)
+				profile.user = user
+				profile.save()
 	else:
-		form_homepage = HomepageForm(instance=homepage)
-		form_profile = ProfileForm(instance=profile)
+		uform = UserForm(instance     = profile.user)
+		hform = HomepageForm(instance = homepage)
+		pform = ProfileForm(instance  = profile)
 	
-	return render(request, 'homepage/edit.html', {'form_profile': form_profile, 'form_homepage': form_homepage})
+	return render(request, 'homepage/edit.html', {'form_profile': pform, 'form_homepage': hform, 'form_user': uform, 'profile': profile})
