@@ -1,7 +1,11 @@
+{% extends "base.html" %}
+
+{% block menu %}{% endblock %}
+{% block profil %}{% endblock %}
 
 {% block content %}
     <h2>Sign in</h2>
-    <form class='site-form' action="{% url 'homepage:signup' %}" method="POST">
+    <form action="{% url 'homepage:signup' %}" method="POST">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Sign Up">

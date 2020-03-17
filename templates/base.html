@@ -4,13 +4,15 @@
 
 <html lang="en" class="no-js">
     <head>
-        {% include "header/head.html" %}        
+        {% include "header/head.html" %}   
     </head>
 
     <body>
         {# Top Menu #}
         <div class="masthead">
+            {% block menu %}
             {% include "menu.html" %}
+            {% endblock %}
         </div>
 
         {# Main Part #}
