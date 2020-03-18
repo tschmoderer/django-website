@@ -143,6 +143,8 @@ MEDIA_URL  ='/media/'
 # Misc settings 
 
 APPEND_SLASH = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True 
 
 # Sass settings
 
@@ -155,5 +157,5 @@ SASS_PROCESSOR_INCLUDE_DIRS = [
 # Login Settings 
 # TODO: change for data base pseudo instead
 LOGOUT_REDIRECT_URL = '/tschmoderer/'
-LOGIN_REDIRECT_URL = '/tschmoderer/'
-LOGIN_URL = '/'
+# LOGIN_REDIRECT_URL = '/tschmoderer/'
+# LOGIN_URL = '/'
