@@ -19,12 +19,12 @@
             <form action="{% url 'homepage:logout' %}" method="post"> {% csrf_token %}
                 <button type="submit">Logout</button>
                 <a href="{% url 'admin:index' %}">Admin</a>
-                <a href="{% url 'homepage:signup' %}">Sign Up</a>
+                {# <a href="{% url 'homepage:signup' %}">Sign Up</a> #}
             </form>
         {% else %}
             <a href="{% url 'homepage:login' %}">Login</a>
             <a href="{% url 'admin:index' %}">Admin</a>
-            <a href="{% url 'homepage:signup' %}">Sign Up</a>
+            {# <a href="{% url 'homepage:signup' %}">Sign Up</a> #}
         {% endif %}
         </div>
   </div>
