@@ -3,8 +3,11 @@ Django==3.0.3
 django-appconf==1.0.3
 django-compressor==2.4
 django-libsass==0.8
+django-markdownx==3.0.1
 django-sass-processor==0.8
 libsass==0.19.4
+Markdown==3.2.1
+Pillow==7.0.0
 pytz==2019.3
 PyYAML==5.3
 rcssmin==1.0.6
