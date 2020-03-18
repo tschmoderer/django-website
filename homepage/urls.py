@@ -11,5 +11,6 @@ urlpatterns = [
 	path('signup/', views.signup_view,  name='signup'),
 	path('<str:username>/', views.home, name='home'),
 	path('<str:username>/edit/', views.edit_homepage, name='edit'),
-	path('<str:username>/blog/', include('blog.urls')),
+
+	path('<str:username>/blog/', include('blog.urls', namespace='blog')),
 ]

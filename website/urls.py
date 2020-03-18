@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('markdownx/', include('markdownx.urls')),
-    path('', include('homepage.urls')),
+    path('', include('homepage.urls', namespace='homepage')),
     # re_path(r'^tschmoderer/', include('homepage.urls')), # change for a username stored in the database
     # re_path(r'^(?P<username>,+)/', include('homepage.urls')),
     # re_path(r'^blog/', include('blog.urls')),

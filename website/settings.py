@@ -76,6 +76,8 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_STRING_IF_INVALID = 'Variable not defined'
+
 WSGI_APPLICATION = 'website.wsgi.application'
 
 # Database
