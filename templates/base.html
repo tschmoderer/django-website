@@ -4,14 +4,36 @@
 
 <html lang="en" class="no-js">
     <head>
-        {% include "header/head.html" %}   
+        {% include "header/head.html" %}  
+        <title>{% block title-page %}Home - {{ profile.user.username }}{% endblock %}</title> 
     </head>
 
     <body>
         {# Top Menu #}
         <div class="masthead">
             {% block menu %}
-            {% include "menu.html" %}
+            <div class="masthead__inner-wrap">
+                <div class="masthead__menu">
+                    <nav id="site-nav" class="greedy-nav">
+                        <button>
+                            <div class="navicon"></div>
+                        </button>
+                        <ul class="visible-links">
+                            <li class="masthead__menu-item masthead__menu-item--lg">{% block nav-about %}<a href="{% url 'homepage:home' profile.user.username %}">{{ profile.user.first_name }} {{ profile.user.last_name }}</a>{% endblock %}</li>
+                            {% comment %}
+                            <li class="masthead__menu-item">{% block nav-publication %}<a href="{% url 'publications' %}">Publications</a>{% endblock %}</li>
+                            <li class="masthead__menu-item">{% block nav-teaching %}   <a href="{% url 'teaching' %}">Teaching</a>{% endblock %}</li>
+                            {% endcomment %}
+                            <li class="masthead__menu-item"><a href="{% url 'homepage:blog:home' profile.user.username %}">{% block nav-blog %}Blog Posts{% endblock %}</a></li>
+                            {% comment %}
+                            <li class="masthead__menu-item">{% block nav-cv %}         <a href="{% url 'cv' %}">CV</a>{% endblock %}</li>
+                            <li class="masthead__menu-item">{% block nav-iathena %}    <a href="{% url 'iathena' %}">IATHENA</a>{% endblock %}</li>
+                            <li class="masthead__menu-item">{% block nav-contact %}    <a href="{% url 'contact' %}">Contact</a>{% endblock %}</li>
+                            {% endcomment %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
             {% endblock %}
         </div>
 
