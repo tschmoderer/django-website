@@ -6,7 +6,8 @@
     <div itemscope itemtype="http://schema.org/Person">
     <form class="edit-profil" action="{% url 'homepage:edit' profile.user.username %}" method="POST">
         {%csrf_token%}
-        <div class="author__avatar"> <img src="{{ profile.picture.url }}" alt="{{ profile.user.first_name }} {{ profile.user.last_name }}" /> 
+        <div class="author__avatar"> 
+            <img src="{{ profile.picture.url }}" alt="{{ profile.user.first_name }} {{ profile.user.last_name }}" /> 
         </div>
         <div class="author__content">
             <label>First name:</label>{{ form_user.first_name }} 

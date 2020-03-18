@@ -15,5 +15,5 @@ class HomepageForm(forms.ModelForm):
 
 class ProfileForm(forms.ModelForm):
     class Meta:
-        model  = Profile
+        model   = Profile
         exclude = ('user', )
