@@ -3,23 +3,7 @@
 
 <meta charset="utf-8">
 
-{# Search Engine Optimisation #}
-<title>{% block title %}Home - TS{% endblock%}</title>
-
-{# comment other possible tags #}
-<meta property="og:locale" content="en-US">
-<meta property="og:site_name" content="Timothée Schmoderer">
-<meta property="og:title" content="Home">
-<link rel="canonical" href="https://tschmoderer.github.io/">
-<meta property="og:url" content="https://tschmoderer.github.io/">
-<meta property="og:description" content="About me">
-<meta name="twitter:site" content="@tschmoderer">
-<meta name="twitter:title" content="Home">
-<meta name="twitter:description" content="About me">
-<meta name="twitter:url" content="https://tschmoderer.github.io/">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json"> { "@context" : "http://schema.org", "@type" : "Person", "name" : "Timothée Schmoderer", "url" : "https://tschmoderer.github.io", "sameAs" : null } </script>
-{# endcomment #}
+<title>{% block title-page %}Home - {{ profile.user.username }}{% endblock %}</title>
 
 {# LOAD STYLE #}
 <link rel="stylesheet" type="text/css" href="{% static 'css/academicons.css' %}" />
@@ -45,6 +29,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.1/es5/sre/sre_browser.min.js" integrity="sha256-tIvJn4Y2mlElbAYvH9cEDNB2XvVO/XlSsIJNgG8lkds=" crossorigin="anonymous"></script>
 <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
 <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } }); </script>
+
+
+
+{# comment other possible tags #}
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Timothée Schmoderer">
+<meta property="og:title" content="Home">
+<link rel="canonical" href="https://tschmoderer.github.io/">
+<meta property="og:url" content="https://tschmoderer.github.io/">
+<meta property="og:description" content="About me">
+<meta name="twitter:site" content="@tschmoderer">
+<meta name="twitter:title" content="Home">
+<meta name="twitter:description" content="About me">
+<meta name="twitter:url" content="https://tschmoderer.github.io/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json"> { "@context" : "http://schema.org", "@type" : "Person", "name" : "Timothée Schmoderer", "url" : "https://tschmoderer.github.io", "sameAs" : null } </script>
+{# endcomment #}
 
 {% comment example head %}
 <link href="https://tschmoderer.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Timothée Schmoderer Feed">
