@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{% url 'homepage:blog:read_article' username=profile.user.username pk=article.id %}">Return to article</a>
+<div>{{ form.errors }}</div>
+<form class="edit_article" action="{% url 'homepage:blog:edit' username=profile.user.username pk=article.id %}" method="POST">
+    {%csrf_token%}
+    {{ form_article }}
+    <input type="submit" value="Edit">
+</form>
+
+{{ form_article.media }}
+{% endblock %}

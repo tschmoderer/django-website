@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form class="add_article" action="{% url 'homepage:blog:add' profile.user.username %}" method="POST">
+    {%csrf_token%}
+    {{ form_article }}
+    <input type="submit" value="Add">
+</form>
+{% endblock %}

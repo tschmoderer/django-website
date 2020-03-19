@@ -14,6 +14,7 @@
 <link rel="icon" type="image/png" sizes="32x32"   href="{% static 'icon/favicon-32x32.png' %}" />
 
 {# SCRIPTS #}
+{% comment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.8.0/marked.min.js" integrity="sha256-fIsvyYkI1qQV1tu1PdlM4FF43kW76YCnCcl/xJCD3Fc=" crossorigin="anonymous"></script>
 
@@ -24,12 +25,19 @@
         })
     })
 </script>
+{% endcomment %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.1/es5/sre/sre_browser.min.js" integrity="sha256-tIvJn4Y2mlElbAYvH9cEDNB2XvVO/XlSsIJNgG8lkds=" crossorigin="anonymous"></script>
-<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
-<script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } }); </script>
-
-
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
 {# comment other possible tags #}
 <meta property="og:locale" content="en-US">

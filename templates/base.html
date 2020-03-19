@@ -19,7 +19,7 @@
                             <div class="navicon"></div>
                         </button>
                         <ul class="visible-links">
-                            <li class="masthead__menu-item masthead__menu-item--lg">{% block nav-about %}<a href="{% url 'homepage:home' profile.user.username %}">{{ profile.user.first_name }} {{ profile.user.last_name }}</a>{% endblock %}</li>
+                            <li class="masthead__menu-item masthead__menu-item--lg"><a href="{% url 'homepage:home' profile.user.username %}">{% block nav-about %}{{ profile.user.first_name }} {{ profile.user.last_name }}{% endblock %}</a></li>
                             {% comment %}
                             <li class="masthead__menu-item">{% block nav-publication %}<a href="{% url 'publications' %}">Publications</a>{% endblock %}</li>
                             <li class="masthead__menu-item">{% block nav-teaching %}   <a href="{% url 'teaching' %}">Teaching</a>{% endblock %}</li>
