@@ -1,31 +1,31 @@
 <footer>
-  <div class="page__footer-follow">
-      <ul class="social-icons">
-          <li><strong>Follow :</strong></li>
-          <li><a href="https://twitter.com/tschmoderer" target="_blank"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-          <li><a href="http://github.com/tschmoderer" target="_blank"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-          {# <li><a href="https://tschmoderer.github.io/feed.xml" target="_blank"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> #}
-      </ul>
-  </div>
-  <div class="page__footer-copyright">
-        <div>
-            &copy; {% now "Y" %} Timothée Schmoderer
-            <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
-                <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
-            </a> 
-        </div>
-        <div>
-        {% if user.is_authenticated %} 
+    <div class="page__footer-copyright">
+        <div style="float: left;">
+            {% if user.is_authenticated %} 
             <form action="{% url 'homepage:logout' %}" method="post"> {% csrf_token %}
-                <button type="submit">Logout</button>
-                 - <a href="{% url 'admin:index' %}">Admin</a>
+                <button type="submit">Logout</button> - 
+                <a href="{% url 'admin:index' %}">Admin</a>
                 {# <a href="{% url 'homepage:signup' %}">Sign Up</a> #}
             </form>
-        {% else %}
-            <a href="{% url 'homepage:login' %}">Login</a> - 
-            <a href="{% url 'admin:index' %}">Admin</a>
-            {# <a href="{% url 'homepage:signup' %}">Sign Up</a> #}
-        {% endif %}
+            {% else %}
+                <a href="{% url 'homepage:login' %}">Login</a> - 
+                <a href="{% url 'admin:index' %}">Admin</a>
+                {# <a href="{% url 'homepage:signup' %}">Sign Up</a> #}
+            {% endif %}
         </div>
-  </div>
+        <div style="float: right;">
+            <div>
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+                    <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+                </a> 
+            </div>
+            <div>
+                &copy; {% now "Y" %} Timothée Schmoderer
+                <div>
+                    <a href="https://twitter.com/tschmoderer" target="_blank"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter </a>
+                    <a href="http://github.com/tschmoderer" target="_blank"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>

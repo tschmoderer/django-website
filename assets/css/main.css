@@ -1608,7 +1608,7 @@ tr, td, th {
     margin-right: auto;
     clear: both;
     margin-top: 2em;
-    padding: 0 1em 2em; }
+    padding: 0 0 1em; }
     .page__footer footer:after {
       content: " ";
       display: block;

@@ -18,7 +18,7 @@
     @include container;
     @include clearfix;
     margin-top: 2em;
-    padding: 0 1em 2em;
+    padding: 0 0 1em;
 
     @include breakpoint($x-large) {
       max-width: $x-large;
