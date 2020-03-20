@@ -2,6 +2,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from markdownx.models import MarkdownxField
+from markdownx.utils import markdownify
 from datetime import date
 import os
 
@@ -13,15 +14,17 @@ def upload_profil_pict(instance, filename):
 
 class Homepage(models.Model): 
     user       = models.OneToOneField(User, on_delete=models.PROTECT)
-    title      = models.CharField(max_length=100)
-    content    = MarkdownxField(blank=True)
-    date_modif = models.DateTimeField(auto_now_add=False, auto_now=True, verbose_name="Modification date")
+    title      = models.CharField(max_length=100, default='')
+    content    = MarkdownxField(blank=True, default='')
 
     def __unicode__(self):
         return u"%s" % self.title 
 
     def __str__(self):
         return u"%s" % self.title
+    
+    def formatted_content(self): 
+        return markdownify(self.content)
 
 class Profile(models.Model):
     user        = models.OneToOneField(User, on_delete=models.PROTECT)
