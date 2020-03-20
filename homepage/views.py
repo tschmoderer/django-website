@@ -65,7 +65,7 @@ def edit_homepage(request, username = None):
 			if hform.is_valid():
 				hform.save()
 			
-		elif 'profile_form' in request.POST: 
+		elif 'update_profile_form' in request.POST: 
 			uform = UserForm(request.POST, instance=profile.user)
 			pform = ProfileForm(request.POST, instance=profile, files=request.FILES)
 			hform = HomepageForm(instance=homepage)
@@ -74,6 +74,14 @@ def edit_homepage(request, username = None):
 				profile = pform.save(commit=False)
 				profile.user = user
 				profile.save()
+				
+		# handle cancel button
+		else:
+			uform = UserForm(instance     = profile.user)
+			hform = HomepageForm(instance = homepage)
+			pform = ProfileForm(instance  = profile)
+
+
 	else:
 		uform = UserForm(instance     = profile.user)
 		hform = HomepageForm(instance = homepage)

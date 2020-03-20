@@ -142,6 +142,16 @@ input[type="submit"] {
   height: auto;
   cursor: pointer;
   *overflow: visible;
+
+  margin-top: 1em;
+
+  &.submit_update {
+    background-color: mix(#fff, $success-color, 50%);
+  }
+
+  &.submit_cancel {
+    background-color: mix(#fff, $danger-color, 50%);
+  }
 }
 
 select,

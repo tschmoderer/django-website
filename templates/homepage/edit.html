@@ -4,7 +4,7 @@
 
 <div class="sidebar sticky">
     <div itemscope itemtype="http://schema.org/Person">
-    <form class="edit-profil" action="{% url 'homepage:edit' profile.user.username %}" method="POST">
+    <form action="{% url 'homepage:edit' profile.user.username %}" method="POST">
         {%csrf_token%}
         <div class="author__avatar"> 
             <img src="{{ profile.picture.url }}" alt="{{ profile.user.first_name }} {{ profile.user.last_name }}" /> 
@@ -29,7 +29,10 @@
                 <li><i class="fas fa-fw fa-chess" aria-hidden="true"></i>{{ form_profile.lichess }}</li>
             </ul>
         </div>
-    <input type="submit" value="Update" name="profile_form">
+    <div style="text-align: center;">
+        <input class="submit_update" type="submit" value="Update" name="update_profile_form">
+        <input class="submit_cancel" type="submit" value="Cancel" name="cancel_profile_form">
+    </div>    
     </form>    
     </div>
 </div>
@@ -39,16 +42,22 @@
 {% block title %}Edit your homepage{% endblock %}
 
 {% block content %}
-<div class="update_homepage_form">
-    <form class="edit-homepage" action="{% url 'homepage:edit' profile.user.username %}" method="POST">
-        {%csrf_token%}
-        {{ form_homepage }}
-        <input type="submit" value="Valid" name="homepage_form">
-    </form>
-</div>
 
-<div class="preview_homepage_form">
-    {{ form_homepage.media }}
+<div>
+    <div style=""">
+        <form action="{% url 'homepage:edit' profile.user.username %}" method="POST">
+            {%csrf_token%}
+            {{ form_homepage }}
+            <div style="text-align: center;">
+                <input class="submit_update" type="submit" value="Update" name="update_homepage_form">
+                <input class="submit_cancel" type="submit" value="Cancel" name="cancel_homepage_form">
+            </div>   
+        </form>
+        {{ form_homepage.media }}
+    </div>
+    <div style="width: 50%; float: right;">
+        
+    </div>
 </div>
 
 {% endblock %}
