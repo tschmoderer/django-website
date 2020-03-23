@@ -8,8 +8,11 @@
         {%csrf_token%}
         <div class="author__avatar"> 
             <img src="{{ profile.picture.url }}" alt="{{ profile.user.first_name }} {{ profile.user.last_name }}" /> 
+            <div class="">
+                Clear: {{ form_profile.clear_picture }}
+            </div>
             <div style="display: flex;">
-                {{ form_profile.picture }}
+                Update: {{ form_profile.picture }}
             </div>
         </div>
         <div class="author__content">

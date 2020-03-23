@@ -73,6 +73,8 @@ def edit_homepage(request, username = None):
 				user    = uform.save()
 				profile = pform.save(commit=False)
 				profile.user = user
+				if 'clear_picture' in request.POST:
+					profile.picture = profile.__class__._meta.get_field('picture').default
 				profile.save()
 				
 		# handle cancel button
