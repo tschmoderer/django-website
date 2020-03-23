@@ -11,3 +11,5 @@ config.yml
 **/migrations/**
 
 media/
+
+assets/css/main.css
