@@ -59,15 +59,15 @@ def edit_homepage(request, username = None):
 
 	if request.method == 'POST': 
 		if 'homepage_form' in request.POST:
-			hform = HomepageForm(request.POST, instance=homepage)
+			hform = HomepageForm(data=request.POST, instance=homepage)
 			pform = ProfileForm(instance=profile)
 			uform = UserForm(instance=profile.user)
 			if hform.is_valid():
 				hform.save()
 			
 		elif 'update_profile_form' in request.POST: 
-			uform = UserForm(request.POST, instance=profile.user)
-			pform = ProfileForm(request.POST, instance=profile, files=request.FILES)
+			uform = UserForm(data=request.POST, instance=profile.user)
+			pform = ProfileForm(data=request.POST, files=request.FILES, instance=profile)
 			hform = HomepageForm(instance=homepage)
 			if pform.is_valid() and uform.is_valid():
 				user    = uform.save()

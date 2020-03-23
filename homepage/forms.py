@@ -16,4 +16,7 @@ class HomepageForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model   = Profile
+        widgets = {
+            'picture': forms.FileInput(attrs=None)
+        }
         exclude = ('user', )
