@@ -4,10 +4,13 @@
 
 <div class="sidebar sticky">
     <div itemscope itemtype="http://schema.org/Person">
-    <form action="{% url 'homepage:edit' profile.user.username %}" method="POST">
+    <form action="{% url 'homepage:edit' profile.user.username %}" method="POST" enctype="multipart/form-data">
         {%csrf_token%}
         <div class="author__avatar"> 
             <img src="{{ profile.picture.url }}" alt="{{ profile.user.first_name }} {{ profile.user.last_name }}" /> 
+            <div style="display: flex;">
+                {{ form_profile.picture }}
+            </div>
         </div>
         <div class="author__content">
             <label>First name:</label>{{ form_user.first_name }} 
@@ -43,10 +46,11 @@
 
 {% block content %}
 
+Error profile: {{ form_profile.errors }}
+
 <div>
-    <div style=""">
-        <form action="{% url 'homepage:edit' profile.user.username %}" method="POST">
-            {%csrf_token%}
+    <div>
+        <form action="{% url 'homepage:edit' profile.user.username %}" method="POST">{%csrf_token%}
             {{ form_homepage }}
             <div style="text-align: center;">
                 <input class="submit_update" type="submit" value="Update" name="update_homepage_form">
@@ -54,9 +58,6 @@
             </div>   
         </form>
         {{ form_homepage.media }}
-    </div>
-    <div style="width: 50%; float: right;">
-        
     </div>
 </div>
 
