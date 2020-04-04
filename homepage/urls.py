@@ -13,4 +13,5 @@ urlpatterns = [
 	path('<str:username>/edit/', views.edit_homepage, name='edit'),
 
 	path('<str:username>/blog/', include('blog.urls', namespace='blog')),
+	path('<str:username>/music/', include('music.urls', namespace='music')),
 ]

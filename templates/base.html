@@ -25,6 +25,7 @@
                             <li class="masthead__menu-item">{% block nav-teaching %}   <a href="{% url 'teaching' %}">Teaching</a>{% endblock %}</li>
                             {% endcomment %}
                             <li class="masthead__menu-item"><a href="{% url 'homepage:blog:home' profile.user.username %}">{% block nav-blog %}Blog Posts{% endblock %}</a></li>
+                            <li class="masthead__menu-item"><a href="{% url 'homepage:music:home' profile.user.username %}">{% block nav-music %}Music{% endblock %}</a></li>
                             {% comment %}
                             <li class="masthead__menu-item">{% block nav-cv %}         <a href="{% url 'cv' %}">CV</a>{% endblock %}</li>
                             <li class="masthead__menu-item">{% block nav-iathena %}    <a href="{% url 'iathena' %}">IATHENA</a>{% endblock %}</li>

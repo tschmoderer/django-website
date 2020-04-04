@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'sass_processor',
     'homepage',
     'blog',
+    'music',
 ]
 
 MIDDLEWARE = [
