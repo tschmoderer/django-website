@@ -6,6 +6,8 @@
     <head>
         {% include "header/head.html" %}  
         <title>{% block title-page %}{% endblock %}</title> 
+        {% block custom_head %}
+        {% endblock %}
     </head>
 
     <body>
@@ -47,7 +49,7 @@
             {% endblock %}
 
             {# Main Content #}
-
+            {% block main_body %}
             <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
                 {% comment %}
                 <meta itemprop="headline" content="Home">
@@ -63,6 +65,7 @@
                     </section>
                 </div>
             </article>
+            {% endblock %}
         </div>
 
         {# Footer #}
