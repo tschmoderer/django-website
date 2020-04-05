@@ -58,7 +58,7 @@ canvas#sigma_bg_1 {
     position:absolute;
     height:auto;
     bottom:0;
-    top:0;
+    top:100px;
     right:0;
 	width: 240px;
 	background-color: #fff;
@@ -143,9 +143,11 @@ padding-top: 18px;
 font-weight:bold;
 }
 
+/*
 #attributepane .data {
 
 }
+*/
 
 #attributepane .data .plus {
 background-repeat: no-repeat;
@@ -249,7 +251,9 @@ padding: 0px 0 0 0;
 width: 240px;
 padding: 18px 18px 18px 18px;
 margin: 0;
-
+position: absolute;
+background-color: #fff;
+margin-top: 100px;
 }
 
 #title {
@@ -267,7 +271,7 @@ padding: 6px 0 10px 0;
 
 #search {
 	border-top: 1px solid #999;
-	padding: 20px 0 0px 2px;
+	padding: 0px 0 0px 2px;
 }
 
 #search input[name=search] {
@@ -399,8 +403,10 @@ background-repeat: no-repeat;
 background-image: url('../images/sprite.png');
 }
 
+/*
 #legend dl {
 }
+*/
 
 #mainpanel h2 {
 	padding-bottom:10px;
@@ -465,7 +471,7 @@ display: none;
 
 #zoom {
 	z-index:999;
-	position: fixed;
+	position: absolute;
 	left: 45%;
 	bottom: 25px;
 	margin:0 auto;

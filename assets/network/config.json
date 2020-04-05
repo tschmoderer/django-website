@@ -8,14 +8,14 @@
     "text": ""
   },
   "text": {
-    "more": "",
-    "intro": "",
-    "title": ""
+    "more": "blabla",
+    "intro": "Explore featuring in music",
+    "title": "Music Feat"
   },
   "legend": {
-    "edgeLabel": "",
-    "colorLabel": "",
-    "nodeLabel": ""
+    "edgeLabel": "feat",
+    "colorLabel": "modularity class",
+    "nodeLabel": "artist"
   },
   "features": {
     "search": true,

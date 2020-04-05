@@ -41,6 +41,7 @@
         </div>
 
         {# Main Part #}
+        {% block main_body %}
         <div id="main" role="main">
             {# Sidebar profil #}
             
@@ -49,7 +50,6 @@
             {% endblock %}
 
             {# Main Content #}
-            {% block main_body %}
             <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
                 {% comment %}
                 <meta itemprop="headline" content="Home">
@@ -65,8 +65,8 @@
                     </section>
                 </div>
             </article>
-            {% endblock %}
         </div>
+        {% endblock %}
 
         {# Footer #}
         <div class="page__footer">
