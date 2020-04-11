@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+class DBMusic(models.Model):
+    title    = models.CharField(max_length=100, default='')
+    filename = models.FileField(upload_to = 'music/databases/',default='') 
+
+    def __unicode__(self):
+        return self.title

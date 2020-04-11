@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import DBMusic
+
+class DBMusicAdmin(admin.ModelAdmin): 
+    list_display = ('title', 'filename')
+
+admin.site.register(DBMusic, DBMusicAdmin)

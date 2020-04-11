@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+{% for db in databases %}
+<div class="article">
+    <h3>{{ db.title }}</h3>
+    <p>{{ db.filename }}</p>
+    <p><a href="{% url 'homepage:music:show_db' pk=db.id username=profile.user.username %}">View</a></p>
+</div>
+{% endfor %}
+
+
+{% endblock %}
