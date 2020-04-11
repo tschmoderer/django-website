@@ -6,3 +6,6 @@ class DBMusic(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_filename(self): 
+        return '/media/' + str(self.filename)

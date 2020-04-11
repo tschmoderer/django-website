@@ -4,8 +4,7 @@
 {% block custom_head %}
 <script>
   conf_file = "{% static 'network/config.json' %}"
-  data_file = "{{ MEDIA_URL}}{{ database.filename }}"
-  console.log(data_file)
+  data_file = "{{ MEDIA_URL }}{{ database.filename }}"
 </script>
 
 <!-- js/default.js -->
@@ -25,7 +24,6 @@
 
 {% block profil %}
 {% endblock %}
-
 
 {% block main_body %}
 <div class="sigma-parent">
