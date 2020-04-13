@@ -1,81 +1,87 @@
-{% load static %}
-
 <!DOCTYPE html>
 
 <html lang="en" class="no-js">
-    <head>
-        {% include "header/head.html" %}  
-        <title>{% block title-page %}{% endblock %}</title> 
-        {% block custom_head %}
-        {% endblock %}
-    </head>
 
-    <body>
-        {# Top Menu #}
-        <div class="masthead">
-            {% block menu %}
-            <div class="masthead__inner-wrap">
-                <div class="masthead__menu">   
-                    <nav id="site-nav" class="greedy-nav">
-                        <button>
-                            <div class="navicon"></div>
-                        </button>
-                        <ul class="visible-links">
-                            <li class="masthead__menu-item masthead__menu-item--lg"><a href="{% url 'homepage:home' profile.user.username %}">{% block nav-about %}{{ profile.user.first_name }} {{ profile.user.last_name }}{% endblock %}</a></li>
-                            <li class="masthead__menu-item"><a href="{% url 'homepage:blog:home' profile.user.username %}">{% block nav-blog %}Blog Posts{% endblock %}</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="droptn">Projects <i class="fa fa-caret-down"></i></a>
-                                <ul class="dropdown-content">
-                                    <li class="masthead__menu-item"><a href="{% url 'homepage:music:home' profile.user.username %}">{% block nav-music %}Music{% endblock %}</a></li>
-                                </ul>
-                            </li>
-                            
-                            {% comment %}
-                            <li class="masthead__menu-item">{% block nav-publication %}<a href="{% url 'publications' %}">Publications</a>{% endblock %}</li>
-                            <li class="masthead__menu-item">{% block nav-teaching %}   <a href="{% url 'teaching' %}">Teaching</a>{% endblock %}</li>
-                            <li class="masthead__menu-item">{% block nav-cv %}         <a href="{% url 'cv' %}">CV</a>{% endblock %}</li>
-                            <li class="masthead__menu-item">{% block nav-iathena %}    <a href="{% url 'iathena' %}">IATHENA</a>{% endblock %}</li>
-                            <li class="masthead__menu-item">{% block nav-contact %}    <a href="{% url 'contact' %}">Contact</a>{% endblock %}</li>
-                            {% endcomment %}
-                        </ul>
-                    </nav>
-                </div>
+<head>
+    {% include "header/head.html" %}
+    <title>{% block title-page %}{% endblock %}</title>
+    {% block custom_head %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    {% block menu %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'homepage:home' profile.user.username %}">
+                {% block nav-about %}{{ profile.user.first_name }} {{ profile.user.last_name }}{% endblock %}
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{% url 'homepage:blog:home' profile.user.username %}">{% block nav-blog %}Blog
+                            Posts{% endblock %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">{% block nav-publication %}Publications{% endblock %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">{% block nav-teaching %}Teaching{% endblock %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">{% block nav-cv %}CV{% endblock %}</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Projects
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item"
+                                href="{% url 'homepage:music:home' profile.user.username %}">{% block nav-music %}Music{% endblock %}</a>
+                            <a class="dropdown-item disabled" href="#">{% block nav-iathena %}Iathena{% endblock %}</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">{% block nav-contact %}Contact{% endblock %}</a>
+                    </li>
+                </ul>
             </div>
-            {% endblock %}
         </div>
-
-        {# Main Part #}
-        {% block main_body %}
-        <div id="main" role="main">
-            {# Sidebar profil #}
-            
-            {% block profil %}
-            {% include "profil.html" %}
-            {% endblock %}
-
-            {# Main Content #}
-            <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-                {% comment %}
-                <meta itemprop="headline" content="Home">
-                <meta itemprop="description" content="About me">
-                {% endcomment %}
-
-                <div class="page__inner-wrap">
-                    <header>
-                        <h1 class="page__title" itemprop="headline">{% block title %}{% endblock %} </h1>
-                    </header>
-                    <section class="page__content" itemprop="text">
-                        {% block content %} {% endblock %}
-                    </section>
-                </div>
-            </article>
+    </nav>
+    {% endblock %}
+    <!-- Navigation -->
+    <!-- Main -->
+    {% block main_body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                {% block profil %}
+                {% include "profil.html" %}
+                {% endblock %}
+            </div>
+            <div class="col-lg-9">
+                <h1>{% block title %}{% endblock %} </h1>
+                {% block content %}{% endblock %}
+            </div>
         </div>
-        {% endblock %}
+    </div>
+    {% endblock %}
+    <!-- Main -->
+    <!-- Footer -->
+    <footer class="page-footer mt-5" style="border-top:1px solid #cecece;">
+        {% include "footer/foot.html" %}
+    </footer>
+    <!-- Footer -->
+    </div>
+</body>
+    {% include "footer/scripts.html" %}
 
-        {# Footer #}
-        <div class="page__footer">
-            {% include "footer/foot.html" %}
-        </div>
-
-    </body>
 </html>
