@@ -7,7 +7,7 @@ class MusicPicture(models.Model):
 
 class DBMusic(models.Model):
     title    = models.CharField(max_length=100, default='')
-    picture  = models.ForeignKey(MusicPicture, on_delete=models.PROTECT,default='')
+    picture  = models.ForeignKey(MusicPicture, on_delete=models.PROTECT,default='', null=True)
     filename = models.FileField(upload_to = 'music/databases/',default='') 
 
     def __unicode__(self):
