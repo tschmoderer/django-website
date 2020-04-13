@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 from django.shortcuts import render, redirect, get_object_or_404
 from homepage.models import Profile
-from .models import DBMusic
+from .models import DBMusic, MusicPicture
 from django.views.generic import ListView, DetailView
 
 class ListDB(ListView):

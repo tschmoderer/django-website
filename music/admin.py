@@ -1,8 +1,11 @@
 from django.contrib import admin
 
-from .models import DBMusic
+from .models import DBMusic, MusicPicture
 
+@admin.register(DBMusic)
 class DBMusicAdmin(admin.ModelAdmin): 
     list_display = ('title', 'filename')
 
-admin.site.register(DBMusic, DBMusicAdmin)
+@admin.register(MusicPicture)
+class MusicPictureAdmin(admin.ModelAdmin): 
+    list_display = ('title', 'date_publi')
