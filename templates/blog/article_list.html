@@ -7,12 +7,15 @@
 {% block content %}
 
 {% for article in last_articles %}
-<div class="artcle">
-    <h3>{{ article.title }}</h3>
-    <p>{{ article.description }}</p>
-    <p>{{ article.id }}</p>
-    <p><a href="{% url 'homepage:blog:read_article' pk=article.id username=profile.user.username %}">Read</a></p>
-    <strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published :</strong> <time datetime="">{{ article.date_publi | date:'Y-m-d'}}</time>
+<div class="card mb-2">
+    <h5 class="card-header">{{ article.title }}</h5>
+    <div class="card-body">
+        <p class="card-text">{{ article.description }}</p>
+        <a href="{% url 'homepage:blog:read_article' pk=article.id username=profile.user.username %}" class="btn btn-primary float-right">Read</a>
+    </div>
+    <div class="card-footer">
+        <strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published :</strong> <time datetime="">{{ article.date_publi | date:'Y-m-d'}}</time>
+    </div>
 </div>
 {% endfor %}
 

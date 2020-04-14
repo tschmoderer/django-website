@@ -3,12 +3,12 @@
 {% block title-page %}Home - {{ profile.user.username }}{% endblock %}
 {% block nav-about %}<strong class="nav-active">{{ profile.user.first_name }} {{ profile.user.last_name }}</strong>{% endblock %}
 
-{% block title %}
+<h1>
 {{ homepage.title }}
 {% if user.is_authenticated %} 
  - <a href="{% url 'homepage:edit' profile.user.username %}" class='homepage:link'>Edit</a>
 {% endif %}
-{% endblock %}
+</h1>
 
 {% block content %}
     {{ homepage.formatted_content | safe }}

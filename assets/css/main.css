@@ -8,3 +8,7 @@
 .sidebar-sticky:hover {
     opacity: 1;
 }
+
+.music-item:hover {
+    box-shadow: 5px 5px 3px grey;
+}
