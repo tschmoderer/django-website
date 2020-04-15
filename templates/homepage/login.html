@@ -1,16 +1,94 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title-page %}Login{% endblock %}
+{% load widget_tweaks %}
 
-{% block menu %}{% endblock %}
 {% block profil %}{% endblock %}
+{% block menu %}{% endblock %}
+{% block footer %}{% endblock %}
+{% comment for later use %}
+<!--Modal Login Form -->
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Log in</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form action="{% url 'homepage:login' %}" method="POST">{%csrf_token%}
+                    {# {% include 'includes/template_form.html' with form=login_form %} #}
+                    {% for field in login_form.visible_fields %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary pull-right">Log In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Login Form -->
+{% endcomment %}
 
-{% block content %}
-    <h2>Log in</h2>
-    {{ form.errors }}
-    <form action="{% url 'homepage:login' %}" method="POST">
-        {%csrf_token%}
-        {{ form }}
-        <input type="submit" value="Login">
-    </form>
+
+
+{% block main_body %}
+<div class="container-fluid">
+    <div class="row justify-content-center align-self-center">
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
+            <button type="button" class="btn btn-secondary pull-right">
+                <a href="/" class="text-reset">Cancel</a>
+            </button>
+
+        <form class="form-signin" action="{% url 'homepage:login' %}" method="POST">{%csrf_token%}
+            {% for hidden_field in login_form.hidden_fields %}
+            {{ hidden_field }}
+            {% endfor %}
+
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for error in login_form.non_field_errors %}
+                {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+            {% for field in login_form.visible_fields %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {% if login_form.is_bound %}
+                {% if field.errors %}
+                {% render_field field class="form-control is-invalid" %}
+                {% for error in field.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+                {% endfor %}
+                {% else %}
+                {% render_field field class="form-control is-valid" %}
+                {% endif %}
+                {% else %}
+                {% render_field field class="form-control" %}
+                {% endif %}
+
+                {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary pull-right">Log In</button>
+        </form>
+        </div>
+        </div>
+</div>
 {% endblock %}

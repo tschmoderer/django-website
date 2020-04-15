@@ -11,5 +11,11 @@
 </h1>
 
 {% block content %}
+    <h1>{{ homepage.title }}</h1>
     {{ homepage.formatted_content | safe }}
+    {% if user.is_authenticated %}
+    <button type="button" class="btn btn-success btn-sm mt-1 float-right">
+        <a href="{% url 'homepage:edit' profile.user.username %}" class="text-reset">Edit</a>
+    </button>
+    {% endif %}
 {% endblock %}

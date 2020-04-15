@@ -2,17 +2,20 @@
     <div class="row">
         <div class="col-lg-2 text-left">
         <!-- Footer Links -->
+            <div class="btn-group-vertical" role="group">
             {% if user.is_authenticated %}
-            <form action="{% url 'homepage:logout' %}" method="post"> {% csrf_token %}
-                <button type="submit">Logout</button> -
-                <a href="{% url 'admin:index' %}">Admin</a>
-                {# <a href="{% url 'homepage:signup' %}">Sign Up</a> #}
-            </form>
-            {% else %}
-            <a href="{% url 'homepage:login' %}">Login</a> -
-            <a href="{% url 'admin:index' %}">Admin</a>
-            {# <a href="{% url 'homepage:signup' %}">Sign Up</a> #}
+                <form action="{% url 'homepage:logout' %}" method="post"> {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                </form>
+                {% else %}
+                {% comment for modal login form %}
+                <button type="button" class="btn btn-success btn-sm"><a href="" data-toggle="modal" data-target="#modalLoginForm" class="text-reset">Login</a></button>
+                {% endcomment %}
+                <button type="button" class="btn btn-success btn-sm"><a href="{% url 'homepage:login' %}"class="text-reset">Login</a></button>
             {% endif %}
+                <button type="button" class="btn btn-secondary btn-sm mt-1"><a href="{% url 'admin:index' %}" class="text-reset">Admin</a></button>
+                {#<button type="button" class="btn btn-primary btn-sm mt-1"><a href="{% url 'homepage:signup' %}" class="text-reset">Sign Up</a> </button> #}
+            </div>
         <!-- Footer Links -->
         </div>
         <div class="col-lg-10 text-right">

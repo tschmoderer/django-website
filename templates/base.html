@@ -75,12 +75,15 @@
     {% endblock %}
     <!-- Main -->
     <!-- Footer -->
+    {% block footer %}
     <footer class="page-footer mt-5" style="border-top:1px solid #cecece;">
         {% include "footer/foot.html" %}
     </footer>
+    {% endblock %}
     <!-- Footer -->
-    </div>
+
+    {# include 'login.html' #}
 </body>
-    {% include "footer/scripts.html" %}
+{% include "footer/scripts.html" %}
 
 </html>

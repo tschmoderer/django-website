@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'markdownx',
     'sass_processor',
+    'widget_tweaks',
     'homepage',
     'blog',
     'music',
@@ -73,6 +74,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                # 'homepage.context_processors.add_login_form',
             ],
         },
     },
@@ -160,6 +162,6 @@ SASS_PROCESSOR_INCLUDE_DIRS = [
 
 # Login Settings 
 # TODO: change for data base pseudo instead
-LOGOUT_REDIRECT_URL = '/tschmoderer/'
+# LOGOUT_REDIRECT_URL = '/tschmoderer/'
 # LOGIN_REDIRECT_URL = '/tschmoderer/'
 # LOGIN_URL = '/'

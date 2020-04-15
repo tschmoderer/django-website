@@ -21,20 +21,3 @@ class ProfileForm(forms.ModelForm):
             'picture': forms.FileInput(attrs=None)
         }
         exclude = ('user', )
-
-#        /* 
-#        nice exemple
-#                model = Author
-#        fields = ('name', 'title', 'birth_date')
-#        labels = {
-#            'name': _('Writer'),
-#        }
-#        help_texts = {
-#            'name': _('Some useful help text.'),
-#        }
-#        error_messages = {
-#            'name': {
-#                'max_length': _("This writer's name is too long."),
-#            },
-#        }
-#        */

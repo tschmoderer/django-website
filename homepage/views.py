@@ -21,7 +21,7 @@ def login_view(request):
 			return redirect('/' + str(user.username) + '/')
 	else:
 		form = AuthenticationForm()
-	return render(request, 'homepage/login.html', {'form': form})		
+	return render(request, 'homepage/login.html', {'login_form': form})		
 
 def logout_view(request): 
 	if request.method == 'POST':
