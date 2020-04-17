@@ -15,6 +15,8 @@ class HomepageForm(forms.ModelForm):
 
 class ProfileForm(forms.ModelForm):
     clear_picture = forms.BooleanField(initial=False, required=False)
+    field_order = ['picture', 'clear_picture']
+    # TODO: change label and help text 
     class Meta:
         model   = Profile
         widgets = {

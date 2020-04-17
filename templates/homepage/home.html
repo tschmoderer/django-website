@@ -3,19 +3,11 @@
 {% block title-page %}Home - {{ profile.user.username }}{% endblock %}
 {% block nav-about %}<strong class="nav-active">{{ profile.user.first_name }} {{ profile.user.last_name }}</strong>{% endblock %}
 
-<h1>
-{{ homepage.title }}
-{% if user.is_authenticated %} 
- - <a href="{% url 'homepage:edit' profile.user.username %}" class='homepage:link'>Edit</a>
-{% endif %}
-</h1>
 
 {% block content %}
     <h1>{{ homepage.title }}</h1>
     {{ homepage.formatted_content | safe }}
     {% if user.is_authenticated %}
-    <button type="button" class="btn btn-success btn-sm mt-1 float-right">
-        <a href="{% url 'homepage:edit' profile.user.username %}" class="text-reset">Edit</a>
-    </button>
+    <a href="{% url 'homepage:edit_homepage' profile.user.username %}" class="btn btn-success btn-sm mt-1 float-right">Edit</a>
     {% endif %}
 {% endblock %}

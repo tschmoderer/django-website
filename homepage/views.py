@@ -58,35 +58,56 @@ def edit_homepage(request, username = None):
 	profile  = get_object_or_404(Profile,  user__username =  username)
 
 	if request.method == 'POST': 
-		if 'homepage_form' in request.POST:
+		if 'update_homepage_form' in request.POST:
 			hform = HomepageForm(data=request.POST, instance=homepage)
 			pform = ProfileForm(instance=profile)
 			uform = UserForm(instance=profile.user)
+			
 			if hform.is_valid():
 				hform.save()
-			
-		elif 'update_profile_form' in request.POST: 
+
+		# handle cancel button
+		else:
+			hform = HomepageForm(instance = homepage)
+
+	else:
+		hform = HomepageForm(instance = homepage)
+	
+	return render(request, 'homepage/edit_homepage.html', {'form_homepage': hform, 'profile': profile})
+
+@login_required
+def edit_profile(request, username = None):
+	profile  = get_object_or_404(Profile,  user__username =  username)
+
+	if request.method == 'POST': 
+		if 'update_user_form' in request.POST: 
 			uform = UserForm(data=request.POST, instance=profile.user)
+			pform = ProfileForm(instance  = profile)
+
+			if uform.is_valid():
+				uform.save()
+
+
+		elif 'update_profile_form' in request.POST: 
 			pform = ProfileForm(data=request.POST, files=request.FILES, instance=profile)
-			hform = HomepageForm(instance=homepage)
-			if pform.is_valid() and uform.is_valid():
-				user    = uform.save()
+			uform = UserForm(instance = profile.user)
+
+			if pform.is_valid():
 				profile = pform.save(commit=False)
-				profile.user = user
+
 				if 'clear_picture' in request.POST:
 					profile.picture = profile.__class__._meta.get_field('picture').default
+					
 				profile.save()
 				
 		# handle cancel button
 		else:
 			uform = UserForm(instance     = profile.user)
-			hform = HomepageForm(instance = homepage)
 			pform = ProfileForm(instance  = profile)
 
 
 	else:
 		uform = UserForm(instance     = profile.user)
-		hform = HomepageForm(instance = homepage)
 		pform = ProfileForm(instance  = profile)
 	
-	return render(request, 'homepage/edit.html', {'form_profile': pform, 'form_homepage': hform, 'form_user': uform, 'profile': profile})
+	return render(request, 'homepage/edit_profile.html', {'form_profile': pform, 'form_user': uform, 'profile': profile})

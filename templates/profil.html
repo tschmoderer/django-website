@@ -70,5 +70,8 @@
         </li>
         {% endif %}
     </ul>
+    {% if user.is_authenticated %}
+    <a href="{% url 'homepage:edit_profile' profile.user.username %}" class="btn btn-success btn-sm mt-2 float-right">Edit</a>
+    {% endif %}
 </div>
 </div>

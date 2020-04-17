@@ -6,6 +6,13 @@
 
 {% block content %}
 
+{% if user.is_authenticated %} 
+<button type="button" class="btn btn-primary btn-sm mb-1">
+    <a href="{% url 'homepage:blog:add' profile.user.username %}" class="text-reset">Add Article</a>
+</button>
+{% endif %}
+
+
 {% for article in last_articles %}
 <div class="card mb-2">
     <h5 class="card-header">{{ article.title }}</h5>
@@ -31,8 +38,5 @@
 </div>
 {% endif %}
 
-{% if user.is_authenticated %} 
-<a href="{% url 'homepage:blog:add' profile.user.username %}"><button>Add</button></a>
-{% endif %}
 
 {% endblock %}

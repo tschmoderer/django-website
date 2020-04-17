@@ -1,4 +1,4 @@
-{# {% load widget_tweaks %} #}
+{% load widget_tweaks %}
 
 {% for hidden_field in form.hidden_fields %}
   {{ hidden_field }}
@@ -14,7 +14,7 @@
 
 {% for field in form.visible_fields %}
   <div class="form-group">
-    {{ field.label_tag }}
+    <h4>{{ field.label_tag }}</h4>
 
     {% if form.is_bound %}
       {% if field.errors %}

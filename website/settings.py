@@ -42,13 +42,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms', # for markdownx widget
     'markdownx',
     'sass_processor',
     'widget_tweaks',
+    'crispy_forms',
     'homepage',
     'blog',
     'music',
 ]
+
+# Custom widget in forms 
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,7 +78,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # personnal addons: 
                 'django.template.context_processors.media',
+                'django.template.context_processors.static',
                 # 'homepage.context_processors.add_login_form',
             ],
         },
