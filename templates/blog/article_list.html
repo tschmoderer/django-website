@@ -1,23 +1,27 @@
 {% extends "base.html" %}
 
+{% block title-page %}Blog - {{ profile.user.username }}{% endblock %}
 {% block nav-blog %}<strong class="nav-active">Blog Posts</strong>{% endblock %}
-
-{% block title %}Blog{% endblock %}
 
 {% block content %}
 
 {% if user.is_authenticated %} 
-<button type="button" class="btn btn-primary btn-sm mb-1">
-    <a href="{% url 'homepage:blog:add' profile.user.username %}" class="text-reset">Add Article</a>
-</button>
+    <a href="{% url 'homepage:blog:add' profile.user.username %}" class="btn btn-primary btn-sm mb-1">Add Article</a>
 {% endif %}
 
-
 {% for article in last_articles %}
+{# TODO: add category to post, implement filter and search  #}
 <div class="card mb-2">
-    <h5 class="card-header">{{ article.title }}</h5>
+    <h5 class="card-header">
+        {{ article.title }} 
+        {% if user.is_authenticated %} 
+        <a href="{% url 'homepage:blog:delete_article' pk=article.id username=profile.user.username %}" 
+           onclick="return confirm('Are you sure to delete this article?\nThis action is irrevocable.');"
+           class="btn btn-sm btn-danger float-right"><i class="fas fa-trash"></i></a>
+        {% endif %}
+    </h5>
     <div class="card-body">
-        <p class="card-text">{{ article.description }}</p>
+        <p class="card-text">{{ article.formatted_description | safe }}</p>
         <a href="{% url 'homepage:blog:read_article' pk=article.id username=profile.user.username %}" class="btn btn-primary float-right">Read</a>
     </div>
     <div class="card-footer">
@@ -27,15 +31,29 @@
 {% endfor %}
 
 {% if is_paginated %}
-<div class="pagination">
+<nav>
+  <ul class="pagination justify-content-center">
     {% if page_obj.has_previous %}
-
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link" >&laquo;</span></li>
     {% endif %}
-    Page {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+
     {% if page_obj.has_next %}
-
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled page-item"><span class="page-link" >&raquo;</span></li>
     {% endif %}
-</div>
+  </ul>
+</nav>
 {% endif %}
 
 

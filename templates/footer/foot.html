@@ -9,9 +9,9 @@
                 </form>
                 {% else %}
                 {% comment for modal login form %}
-                <button type="button" class="btn btn-success btn-sm"><a href="" data-toggle="modal" data-target="#modalLoginForm" class="text-reset">Login</a></button>
+                <a href="" data-toggle="modal" data-target="#modalLoginForm" class="btn btn-success btn-sm">Login</a></button>
                 {% endcomment %}
-                <button type="button" class="btn btn-success btn-sm"><a href="{% url 'homepage:login' %}"class="text-reset">Login</a></button>
+                <a href="{% url 'homepage:login' %}" class="btn btn-success btn-sm">Login</a></button>
             {% endif %}
                 <a href="{% url 'admin:index' %}" class="btn btn-secondary btn-sm mt-1">Admin</a>
                 {#<button type="button" class="btn btn-primary btn-sm mt-1"><a href="{% url 'homepage:signup' %}" class="text-reset">Sign Up</a> </button> #}

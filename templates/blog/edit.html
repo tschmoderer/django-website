@@ -1,13 +1,22 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load widget_tweaks %}
 
-{% block content %}
-<a href="{% url 'homepage:blog:read_article' username=profile.user.username pk=article.id %}">Return to article</a>
-<div>{{ form.errors }}</div>
-<form class="edit_article" action="{% url 'homepage:blog:edit' username=profile.user.username pk=article.id %}" method="POST">
-    {%csrf_token%}
-    {{ form_article }}
-    <input type="submit" value="Edit">
-</form>
+{% block profil %}{% endblock %}
 
-{{ form_article.media }}
+{% block main_body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+        <h1>Add an article</h1>
+        <form action="{% url 'homepage:blog:edit' username=profile.user.username pk=article.id %}" method="POST">{%csrf_token%}
+            {% include 'includes/template_form.html' with form=form_article %}
+            <div class="mt-3 float-right">
+                <input class="btn btn-success" type="submit" value="Update" name="edit_article_form">
+                <input class="btn btn-danger"  type="submit" value="Cancel" name="cancel_edit_article_form">
+            </div>  
+        </form>
+        {{ form_article.media }}
+    </div>
+    </div>
+</div>
 {% endblock %}

@@ -6,7 +6,7 @@
 {% block main_body %}
 <div class="container">
     <div class="row">
-        <h1>Edit your Homepage </h1>
+        <h1>Edit your Homepage</h1>
         <form action="{% url 'homepage:edit_homepage' profile.user.username %}" method="POST">{%csrf_token%}
             {% include 'includes/template_form.html' with form=form_homepage %}
             <div class="mt-3 float-right">
