@@ -5,6 +5,7 @@
 {% block profil %}{% endblock %}
 {% block menu %}{% endblock %}
 {% block footer %}{% endblock %}
+
 {% comment for later use %}
 <!--Modal Login Form -->
 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -42,11 +43,14 @@
 
 {% block main_body %}
 <div class="container-fluid">
+    <div class="row mt-5 mb-3">
+        <div class="col">
+            <h2 class="text-center">Log In</h2>
+        </div>
+    </div>
     <div class="row justify-content-center align-self-center">
         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
-            <button type="button" class="btn btn-secondary">
-                <a href="/" class="text-reset">Cancel</a>
-            </button>
+            
 
         <form class="form-signin" action="{% url 'homepage:login' %}" method="POST">{%csrf_token%}
             {% for hidden_field in login_form.hidden_fields %}
@@ -86,7 +90,12 @@
             </div>
             {% endfor %}
 
-            <button type="submit" class="btn btn-primary float-right">Log In</button>
+            <div class="float-right">
+                <a onclick="history.back()" class="btn btn-secondary mr-1 text-white">Cancel</a>
+                <button type="submit" class="btn btn-primary ml-1">Log In</button>
+            </div>
+            
+
         </form>
         </div>
         </div>

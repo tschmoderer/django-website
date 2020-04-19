@@ -41,12 +41,13 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Projects
+                            {% block nav-projects %}Projects{% endblock %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item"
                                 href="{% url 'homepage:music:home' profile.user.username %}">{% block nav-music %}Music{% endblock %}</a>
                             <a class="dropdown-item disabled" href="#">{% block nav-iathena %}Iathena{% endblock %}</a>
+                            <a class="dropdown-item disabled" href="#">{% block nav-genealogie %}Genealogie{% endblock %}</a>
                         </div>
                     </li>
                     <li class="nav-item">
