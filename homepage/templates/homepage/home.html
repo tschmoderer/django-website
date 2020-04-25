@@ -1,0 +1,33 @@
+{% extends "includes/base.html" %}
+
+{% block title-page %}Home - {{ profile.user.username }}{% endblock %}
+
+{% block menu %}
+    {% include 'homepage/homepage_menu.html' %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'homepage/homepage_profile.html' %}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-2">
+        {{ homepage.title }}
+        {% if can_edit_homepage %}
+        <a href="{% url 'homepage:edit_homepage' profile.user.username %}" 
+            class="btn btn-primary btn-sm mt-2 float-right">
+            <i class="fas fa-pen"></i>
+        </a>
+        {% endif %}
+    </h1>
+    <div id="markdown-content">{{ homepage.content }}</div>
+
+
+    <script type="text/javascript">
+        var dirty  = $('#markdown-content');
+        var config = {ADD_TAGS: ['iframe'], ADD_ATTR: ['allowtransparency', 'frameborder']};
+        var clean  = DOMPurify.sanitize(marked(dirty.text()), config);
+        console.log(clean)
+        dirty.html(clean);
+    </script>
+{% endblock %}

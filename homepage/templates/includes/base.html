@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en" class="no-js">
+
+<head>
+    {% block header %}
+        {% include "includes/head.html" %}
+    {% endblock %}
+    <title>{% block title-page %}{% endblock %}</title>
+    {% block custom_head %}{% endblock %}
+</head>
+
+<body>
+    <!-- Navigation -->
+    {% block menu %}{% endblock %}
+    <!-- Navigation -->
+    <!-- Main -->
+    {% block main_body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                {% block sidebar %}{% endblock %}
+            </div>
+            <div class="col-lg-9">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    <!-- Main -->
+    <!-- Footer -->
+    <footer class="page-footer mt-5" style="border-top:1px solid #cecece;">
+        <div class="container mt-2 mb-2">
+            <div class="row">
+                {% block custom_footer %}{% endblock %}
+                {% include "includes/foot.html" %}
+            </div>
+        </div>
+    </footer>
+    <!-- Footer -->
+    {% block custom_scripts_body %}{% endblock %}
+</body>
+</html>

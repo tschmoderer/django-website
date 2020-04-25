@@ -42,18 +42,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.forms', # for markdownx widget
-    'markdownx',
-    'sass_processor',
-    'widget_tweaks',
-    'crispy_forms',
+    'django.forms',
+    # 'sass_processor', # https://github.com/jrief/django-sass-processor
+    'widget_tweaks',  # https://github.com/jazzband/django-widget-tweaks 
+    # 'martor',         # https://github.com/agusmakmun/django-markdown-editor 
+    # 'site_base',
     'homepage',
-    'blog',
-    'music',
+    # 'blog',
+#    'music',
+
+    # to clean file when a new is loaded
+#    'django_cleanup',
 ]
 
 # Custom widget in forms 
-FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
+# FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,7 +84,6 @@ TEMPLATES = [
                 # personnal addons: 
                 'django.template.context_processors.media',
                 'django.template.context_processors.static',
-                # 'homepage.context_processors.add_login_form',
             ],
         },
     },
@@ -137,14 +139,10 @@ USE_TZ    = True
 
 STATIC_URL  = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'assets/'),
-]
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'sass_processor.finders.CssFinder',
 ]
 
 
@@ -159,16 +157,8 @@ APPEND_SLASH = True
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True 
 
-# Sass settings
-
-SASS_PROCESSOR_ROOT = STATIC_ROOT
-
-SASS_PROCESSOR_INCLUDE_DIRS = [
-    os.path.join(BASE_DIR, 'assets/sass/'),
-]
-
 # Login Settings 
 # TODO: change for data base pseudo instead
-# LOGOUT_REDIRECT_URL = '/tschmoderer/'
+LOGOUT_REDIRECT_URL = '/tschmoderer/'
 # LOGIN_REDIRECT_URL = '/tschmoderer/'
 # LOGIN_URL = '/'

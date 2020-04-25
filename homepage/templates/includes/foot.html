@@ -1,0 +1,41 @@
+<div class="col-lg-2 text-left">
+    <!-- Footer Links -->
+    <div class="btn-group" role="group">
+        {% comment %}
+        {% if user.is_authenticated %}
+        <form action="{% url 'base:logout' %}" method="post"> {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i></button>
+        </form>
+        {% else %}
+        <a href="{% url 'base:login' %}" class="btn btn-success btn-sm"><i class="fas fa-sign-in-alt"></i></a>
+        {% endif %}
+        {% endcomment %}
+        <a href="{% url 'admin:index' %}" class="btn btn-secondary btn-sm"><i class="fas fa-user-shield fa-fw"></i></a>
+        {#<a href="{% url 'base:signup' %}" class="btn btn-primary btn-sm"><i class="fas fa-user-plus"></i></a>#}
+    </div>
+    {% if user.is_authenticated %}
+    <div class="text-muted text-sm">
+        <small>You are logged in as {{ user.username }}</small>
+    </div>
+    {% endif %}
+    <!-- Footer Links -->
+</div>
+
+<div class="col-lg-10 text-right">
+    <!-- Copyright -->
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+        <img alt="Creative Commons License" style="border-width:0"
+            src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+    </a>
+    <div style="font-size: small;">
+        &copy; {% now "Y" %} Timothée Schmoderer
+        <div>
+            <i class="fab fa-fw fa-twitter-square" style="color: #1da1f2;" aria-hidden="true"></i>
+            <a href="https://twitter.com/tschmoderer" target="_blank" class="text-reset">Twitter</a>
+
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i>
+            <a href="https://github.com/tschmoderer" target="_blank" class="text-reset">Github</a>
+        </div>
+    </div>
+    <!-- Copyright -->
+</div>

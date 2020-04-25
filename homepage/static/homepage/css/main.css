@@ -1,0 +1,10 @@
+.sidebar-sticky {
+    opacity: 0.75; 
+    transition: opacity 0.2s ease-in-out;
+    position: sticky;
+    top: 1em;
+}
+
+.sidebar-sticky:hover {
+    opacity: 1;
+}

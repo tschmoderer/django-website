@@ -1,0 +1,71 @@
+<div class="sidebar-sticky">
+<div class="text-center">
+    <div class="mx-auto w-75">
+        <img class="img-thumbnail rounded-circle" src="{{ profile.picture.url }}"
+            alt="{{ profile.user.first_name }} {{ profile.user.last_name }}" />
+    </div>
+    <h5 class="mt-2">{{ profile.user.get_full_name }}</h5>
+    <h6 class="mb-4"><small>{{ profile.description }}</small></h6>
+</div>
+
+<div>
+    <ul class="list-group">
+        {% if profile.place %}
+        <li class="list-group-item"><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i>
+            <a>{{ profile.place }}</a>
+        </li>
+        {% endif %}
+
+        {% if profile.user.email %}
+        <li class="list-group-item"><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i>
+            <a href="mailto:{{ profile.user.email }}" class="text-reset">Email</a>
+        </li>
+        {% endif %}
+
+        {% if profile.twitter %}
+        <li class="list-group-item"><i class="fab fa-fw fa-twitter-square" style="color: #1da1f2;" aria-hidden="true"></i>
+            <a href="{{ profile.get_twitter_link }}" target="_blank" class="text-reset">Twitter</a>
+        </li>
+        {% endif %}
+
+        {% if profile.linkedin %}
+        <li class="list-group-item"><i class="fab fa-linkedin fa-fw" style="color: #4875B4;" aria-hidden="true"></i>
+            <a href="{{ profile.get_linkedin_link }}" target="_blank" class="text-reset">LinkedIn</a>
+        </li>
+        {% endif %}
+
+        {% if profile.github %}
+        <li class="list-group-item"><i class="fab fa-fw fa-github" aria-hidden="true"></i>
+            <a href="{{ profile.get_github_link }}" target="_blank" class="text-reset">Github</a>
+        </li>
+        {% endif %}
+
+        {% if profile.youtube %}
+        <li class="list-group-item"><i class="fab fa-fw fa-youtube" style="color: #FF3333;" aria-hidden="true"></i>
+            <a href="{{ profile.get_youtube_link }}" target="_blank" class="text-reset">YouTube</a>
+        </li>
+        {% endif %}
+
+        {% if profile.scholar %}
+        <li class="list-group-item"><i class="ai ai-google-scholar-square ai-fw" style="color:blue"></i>
+            <a href="{{ profile.get_scholar_link }}" target="_blank" class="text-reset">Google Scholar</a>
+        </li>
+        {% endif %}
+
+        {% if profile.orcid %}
+        <li class="list-group-item"><i class="ai ai-orcid-square ai-fw" style="color: #a6ce39;"></i>
+            <a href="{ profile.get_orcid_link }}" target="_blank" class="text-reset">ORCID</a>
+        </li>
+        {% endif %}
+
+        {% if profile.lichess %}
+        <li class="list-group-item"><i class="fas fa-fw fa-chess" aria-hidden="true"></i>
+            <a href="{{ profile.get_lichess_link }}" target="_blank" class="text-reset">Lichess</a>
+        </li>
+        {% endif %}
+    </ul>
+    {% if can_edit_profile %}
+    <a href="{% url 'homepage:edit_profile' profile.user.username %}" class="btn btn-primary btn-sm mt-2 float-right"><i class="fas fa-pen"></i></a>
+    {% endif %}
+</div>
+</div>
