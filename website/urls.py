@@ -13,6 +13,7 @@ urlpatterns = [
     # path('<str:username>/blog/', include('blog.urls', namespace='blog')),
     path('', RedirectView.as_view(url='tschmoderer', permanent=False), name='index'),
     path('<str:username>/', include('homepage.urls', namespace='homepage')),
+    path('<str:username>/blog/', include('blog.urls', namespace='blog')),
     # external tool urls
 ] 
 

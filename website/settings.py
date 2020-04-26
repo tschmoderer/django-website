@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     # 'martor',         # https://github.com/agusmakmun/django-markdown-editor 
     # 'site_base',
     'homepage',
-    # 'blog',
+    'blog',
 #    'music',
 
     # to clean file when a new is loaded
