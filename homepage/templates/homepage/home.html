@@ -23,7 +23,6 @@
         var dirty  = $('#markdown-content');
         var config = {ADD_TAGS: ['iframe'], ADD_ATTR: ['allowtransparency', 'frameborder']};
         var clean  = DOMPurify.sanitize(marked(dirty.text()), config);
-        console.log(clean)
         dirty.html(clean);
     </script>
 {% endblock %}
