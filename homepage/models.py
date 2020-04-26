@@ -4,9 +4,8 @@ from django.db import models
 import os
 
 def upload_profil_pict(instance, filename):
-    upload_to = 'profile'
     ext = filename.split('.')[-1]
-    return os.path.join(instance.user.username, upload_to, instance.user.username + '-profile-picture' + '.' + ext )
+    return os.path.join('homepage', instance.user.username, 'profile', instance.user.username + '-profile-picture' + '.' + ext )
 
 class Homepage(models.Model): 
     user    = models.OneToOneField(User, to_field='id', primary_key=True, on_delete=models.CASCADE)
@@ -26,7 +25,14 @@ class Homepage(models.Model):
 
 class Profile(models.Model):
     user        = models.OneToOneField(User, to_field='id', primary_key=True, on_delete=models.CASCADE)
-    picture     = models.ImageField(verbose_name='Profile picture', upload_to=upload_profil_pict, blank=True, default='profile/default-profil.jpg')
+    picture     = models.ImageField(verbose_name='Profile picture', upload_to=upload_profil_pict, blank=True, null=True)
+
+    @property
+    def picture_url(self):
+        if self.picture:
+            return self.picture.url
+        else:
+            return "/static/homepage/img/default-profil.jpg"
     
     description = models.CharField(verbose_name='Short description',               
                 max_length=150, 
