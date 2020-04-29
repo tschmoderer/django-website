@@ -1,10 +1,6 @@
 {% extends "includes/base.html" %}
 {% load widget_tweaks %}
 
-{% block menu %}
-{% include 'homepage/homepage_menu.html' %}
-{% endblock %}
-
 {% block main_body %}
 <div class="container">
     <div class="row">
@@ -66,23 +62,27 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            {% render_field form_profile.picture class="custom-file-input" %}
+                                            {% render_field form_profile.picture class="custom-file-input" accept="image/x-png,image/gif,image/jpeg" %}
                                             <label class="custom-file-label"
-                                                for="{{ form_profile.picture.id_for_label }}">{{ form_profile.picture.label_tag }}</label>
+                                                for="{{ form_profile.picture.id_for_label }}" id="img-upload-label">{{ form_profile.picture.label }}</label>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col">
                                 <!--Clear Profile Picture-->
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="form-check">
                                             {% render_field form_profile.clear_picture class="form-check-input" %}
                                             <label class="form-check-label"
-                                                for="{{ form_profile.clear_picture.id_for_label }}">{{ form_profile.clear_picture.label_tag }}</label>
+                                                for="{{ form_profile.clear_picture.id_for_label }}">{{ form_profile.clear_picture.label }}</label>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mx-auto w-25" id="img-preview">
+                                    <img class="img-thumbnail rounded-circle" src="{{ profile.picture_url }}"
+                                    alt="{{ profile.user.get_full_name }}" />
                                 </div>
                             </div>
                         </div>
@@ -192,213 +192,48 @@
     </div>
 </div>
 
-<script>
-    // Add the following code if you want the name of the file appear on select
-    $(".custom-file-input").on("change", function () {
+{% endblock %}
+
+{% block custom_scripts %}
+<script type="text/javascript">
+    const profil_pict_label = document.getElementById("img-upload-label");
+    const default_profil_pict_label = profil_pict_label.textContent; 
+    const img_preview = document.getElementById("img-preview").getElementsByTagName('img')[0];
+    const profil_pict_upload = document.getElementById("{{ form_profile.picture.id_for_label }}");
+    const clear_pict_btn = document.getElementById("{{ form_profile.clear_picture.id_for_label }}"); 
+
+    profil_pict_upload.addEventListener("change", function() {
         var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        profil_pict_label.textContent = fileName;
+
+        // update preview
+        var file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.addEventListener('load', function(){
+                img_preview.setAttribute("src", this.result);
+            });
+            reader.readAsDataURL(file);
+
+            // block clear picture 
+            clear_pict_btn.setAttribute('disabled','')
+        };
+    }); 
+
+    var previous_img = document.getElementById("img-preview").getElementsByTagName('img')[0].getAttribute('src'); ;
+
+    clear_pict_btn.addEventListener("change", function(){
+        if (clear_pict_btn.checked) {
+            previous_img = document.getElementById("img-preview").getElementsByTagName('img')[0].getAttribute('src'); 
+            // set image to default
+            img_preview.setAttribute("src", '/static/homepage/img/default-profil.jpg');
+            // disabeled choice of new img
+            profil_pict_upload.setAttribute('disabled', '');
+        } else {
+            // restore previous choice and allow the browse of a new picture
+            profil_pict_upload.removeAttribute('disabled', '');
+            img_preview.setAttribute("src", previous_img);
+        };
     });
 </script>
 {% endblock %}
-
-{% comment %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 mt-3">
-            <h2 class="text-center border bg-light">
-                Update your Profile
-            </h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <h3 class="text-center border bg-light">
-                Update your contact informations
-            </h3>
-            <!-- User Information Form -->
-            <form role="form" method="POST" action="{% url 'homepage:edit_profile' profile.user.username %}">
-                {%csrf_token%}
-                <!--First Name-->
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user fa-fw" aria-hidden="true"></i></span>
-                        </div>
-                        {% render_field form_user.first_name class="form-control" %}
-                    </div>
-                </div>
-                <!--Last Name-->
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user fa-fw" aria-hidden="true"
-                                    style="color:black"></i></span>
-                        </div>
-                        {% render_field form_user.last_name class="form-control" %}
-                    </div>
-                </div>
-                <!--Email-->
-                <div class="form-group">
-                    <div class="input-group mb-1">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-fw fa-envelope-square"
-                                    aria-hidden="true"></i></span>
-                        </div>
-                        {% render_field form_user.email class="form-control" %}
-                    </div>
-                </div>
-                {% comment %}
-                <!--Change Password-->
-                <div class="">
-                    <a href="" class="text-muted">change password</a>
-                </div>
-                {% endcomment %}
-                <!--Button-->
-                <button type="submit" class="btn btn-primary float-right" name="update_user_form">Update</button>
-            </form>
-        </div>
-        <div class="col-md-8">
-            <h3 class="text-center border bg-light">
-                Update your social informations
-            </h3>
-            <!-- Social Form -->
-            <form role="form" method="POST" action="{% url 'homepage:edit_profile' profile.user.username %}"
-                enctype="multipart/form-data">{%csrf_token%}
-                <div class="row">
-                    <div class="col">
-                        <!--Profile Picture-->
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    {% render_field form_profile.picture class="custom-file-input" %}
-                                    <label class="custom-file-label"
-                                        for="{{ form_profile.picture.id_for_label }}">{{ form_profile.picture.label_tag }}</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <!--Clear Profile Picture-->
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="form-check">
-                                    {% render_field form_profile.clear_picture class="form-check-input" %}
-                                    <label class="form-check-label"
-                                        for="{{ form_profile.clear_picture.id_for_label }}">{{ form_profile.clear_picture.label_tag }}</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <!--Place-->
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-fw fa-map-marker"
-                                            aria-hidden="true"></i></span>
-                                </div>
-                                {% render_field form_profile.place class="form-control" placeholder=form_profile.place.label %}
-                            </div>
-                        </div>
-                        <!--Twitter-->
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fab fa-fw fa-twitter-square"
-                                            aria-hidden="true"></i></span>
-                                </div>
-                                {% render_field form_profile.twitter class="form-control" placeholder=form_profile.twitter.label %}
-                            </div>
-                        </div>
-                        <!--Github-->
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fab fa-fw fa-github"
-                                            aria-hidden="true"></i></span>
-                                </div>
-                                {% render_field form_profile.github class="form-control" placeholder=form_profile.github.label %}
-                            </div>
-                        </div>
-                        <!--Scholar-->
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i
-                                            class="ai ai-google-scholar-square ai-fw"></i></span>
-                                </div>
-                                {% render_field form_profile.scholar class="form-control" placeholder=form_profile.scholar.label %}
-                            </div>
-                        </div>
-                        <!--Lichess-->
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-fw fa-chess"
-                                            aria-hidden="true"></i></span>
-                                </div>
-                                {% render_field form_profile.lichess class="form-control" placeholder=form_profile.lichess.label %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <!--Bio-->
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user fa-fw"
-                                            aria-hidden="true"></i></span>
-                                </div>
-                                {% render_field form_profile.description class="form-control" placeholder=form_profile.description.label %}
-                            </div>
-                        </div>
-                        <!--Linkedin-->
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fab fa-linkedin fa-fw"
-                                            aria-hidden="true"></i></span>
-                                </div>
-                                {% render_field form_profile.linkedin class="form-control" placeholder=form_profile.linkedin.label %}
-                            </div>
-                        </div>
-                        <!--Youtube-->
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fab fa-fw fa-youtube"
-                                            aria-hidden="true"></i></i></span>
-                                </div>
-                                {% render_field form_profile.youtube class="form-control" placeholder=form_profile.youtube.label %}
-                            </div>
-                        </div>
-                        <!--Orcid-->
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="ai ai-orcid-square ai-fw"></i></span>
-                                </div>
-                                {% render_field form_profile.orcid class="form-control" placeholder=form_profile.orcid.label %}
-                            </div>
-                        </div>
-                        <!--Button-->
-                        <button type="submit" class="btn btn-primary float-right"
-                            name="update_profile_form">Update</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<script>
-    // Add the following code if you want the name of the file appear on select
-    $(".custom-file-input").on("change", function () {
-        var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-    });
-</script>
-{% endcomment %

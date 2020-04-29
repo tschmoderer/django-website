@@ -6,60 +6,17 @@
     {% block header %}
         {% include "includes/head.html" %}
     {% endblock %}
-    <title>{% block title-page %}{% endblock %}</title>
     {% block custom_head %}{% endblock %}
+    <title>{% block title-page %}{% endblock %}</title>
+    {% block style %}
+        {% include 'includes/styles.html' %}
+    {% endblock %}
 </head>
 
 <body>
     <!-- Navigation -->
     {% block menu %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'homepage:home' profile.user.username %}">
-                <strong class="nav-active">{{ profile.user.get_full_name }}</strong>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link"
-                            href="{% url 'blog:home' profile.user.username %}">{% block nav-blog %}Blog
-                            Posts{% endblock %}</a>
-                    </li>
-                    {% comment %}
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">{% block nav-publication %}Publications{% endblock %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">{% block nav-teaching %}Teaching{% endblock %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">{% block nav-cv %}CV{% endblock %}</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle disabled" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {% block nav-projects %}Projects{% endblock %}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item"
-                                href="{# url 'homepage:music:home' profile.user.username #}">{% block nav-music %}Music{% endblock %}</a>
-                            <a class="dropdown-item disabled" href="#">{% block nav-iathena %}Iathena{% endblock %}</a>
-                            <a class="dropdown-item disabled"
-                                href="#">{% block nav-genealogie %}Genealogie{% endblock %}</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">{% block nav-contact %}Contact{% endblock %}</a>
-                    </li>
-                    {% endcomment %}
-                </ul>
-            </div>
-        </div>
-    </nav>
+        {% include 'includes/menu.html' %}
     {% endblock %}
     <!-- Navigation -->
     <!-- Main -->
@@ -86,6 +43,9 @@
         </div>
     </footer>
     <!-- Footer -->
-    {% block custom_scripts_body %}{% endblock %}
+    {% block scripts %}
+        {% include 'includes/scripts.html' %}
+    {% endblock %}
+    {% block custom_scripts %}{% endblock %}
 </body>
 </html>

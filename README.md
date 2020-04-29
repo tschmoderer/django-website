@@ -20,7 +20,11 @@ create supersuser
 ./manage createsuperuser
 ```
 
-
+```
+[pypi]
+  username = __token__
+  password = pypi-AgENdGVzdC5weXBpLm9yZwIkZDZlZGEzMzEtMWEwNy00ZGY5LWI4ZjctNWVjNmI4MTM2NTFjAAIleyJwZXJtaXNzaW9ucyI6ICJ1c2VyIiwgInZlcnNpb24iOiAxfQAABiCJd5LNx4ZrxGWa5YEDPmBMybudxLPAIO92SEU5Na3mEg
+```
 
 
 

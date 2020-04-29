@@ -30,6 +30,7 @@ def home(request, username = None):
 	return render(request, 'homepage/home.html', context)
 
 @login_required
+# TODO: handle image upload
 def edit_homepage(request, username = None):
 	homepage = get_object_or_404(Homepage, user__username =  username)
 	profile  = get_object_or_404(Profile,  user__username =  username)
@@ -74,7 +75,7 @@ def edit_profile(request, username = None):
 				profile = pform.save(commit=False)
 
 				if 'clear_picture' in request.POST:
-					profile.picture = profile.__class__._meta.get_field('picture').default
+					profile.picture.delete()
 					
 				profile.save()
 			else: 

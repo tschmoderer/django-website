@@ -17,12 +17,13 @@
         {% endif %}
     </h1>
     <div id="markdown-content">{{ homepage.content }}</div>
+{% endblock %}
 
-
-    <script type="text/javascript">
-        var dirty  = $('#markdown-content');
-        var config = {ADD_TAGS: ['iframe'], ADD_ATTR: ['allowtransparency', 'frameborder']};
-        var clean  = DOMPurify.sanitize(marked(dirty.text()), config);
-        dirty.html(clean);
-    </script>
+{% block custom_scripts %}
+<script type="text/javascript">
+    var dirty  = $('#markdown-content');
+    var config = {ADD_TAGS: ['iframe'], ADD_ATTR: ['allowtransparency', 'frameborder']};
+    var clean  = DOMPurify.sanitize(md.render(dirty.text()), config);
+    dirty.html(clean);
+</script>
 {% endblock %}
