@@ -14,7 +14,7 @@ class HomepageForm(forms.ModelForm):
         model   = Homepage
         exclude = ('user', )
         widgets = {
-            'content': MDeditorWidget(),
+            'content': MDeditorWidget(attrs={'rows': 40}),
         }
 
 class ProfileForm(forms.ModelForm):
