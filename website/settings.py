@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.forms',
     # 'sass_processor', # https://github.com/jrief/django-sass-processor
     'widget_tweaks',  # https://github.com/jazzband/django-widget-tweaks 
+    'mdeditor',
     # 'martor',         # https://github.com/agusmakmun/django-markdown-editor 
     # 'site_base',
     'homepage',

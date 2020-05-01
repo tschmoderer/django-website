@@ -2,6 +2,7 @@
 from django import forms
 from .models import Homepage, Profile
 from django.contrib.auth.models import User
+from mdeditor.widgets import MDeditorWidget
 
 class UserForm(forms.ModelForm): 
     class Meta: 
@@ -9,10 +10,12 @@ class UserForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email', )
 
 class HomepageForm(forms.ModelForm):
-    # TODO: handle image uploads
     class Meta:
         model   = Homepage
         exclude = ('user', )
+        widgets = {
+            'content': MDeditorWidget(),
+        }
 
 class ProfileForm(forms.ModelForm):
     clear_picture = forms.BooleanField(initial=False, required=False)

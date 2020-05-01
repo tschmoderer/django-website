@@ -1,4 +1,4 @@
-{% extends "includes/base.html" %} {% load widget_tweaks %} {% load static %} {% block main_body %}
+{% extends "includes/base.html" %} {% load widget_tweaks %} {% block main_body %}
 <div class="container">
     <div class="row">
         <div class="col">
@@ -24,53 +24,16 @@
         <div class="row">
             <div class="col">
                 <!--Content-->
-                {{ form_homepage.content.as_hidden }}
-                <div class="card mb-2">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs" id="editor-list" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#editor" role="tab" id="editor-tab"><i
-                                        class="far fa-edit"></i> Editor</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#md-preview" role="tab" id="preview-tab"><i
-                                        class="far fa-eye"></i> Preview</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="editor" role="tabpanel">
-                                {% include 'homepage/md-editor/toolbar.html' %}
-                                <div id="markdown-editor"></div>
-                            </div>
-                            <div class="tab-pane" id="md-preview" role="tabpanel" aria-labelledby="preview-tab"></div>
-                        </div>
-                    </div>
-                </div>
+                {{ form_homepage.content }} 
             </div>
         </div>
         <!--Button-->
         <button type="submit" class="btn btn-primary float-right" name="update_homepage_form">Update</button>
     </form>
 </div>
-
 {% endblock %}
 
 <!--Load ace markdonw-->
 {% block custom_scripts %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.min.js" integrity="sha256-qCCcAHv/Z0u7K344shsZKUF2NR+59ooA3XWRj0LPGIQ=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/mode-markdown.min.js" integrity="sha256-V4Bk6vyGYkRt0YRA/2C2V0gZIr6U37eZlhFtAT67oh4=" crossorigin="anonymous"></script>
-
-<!--Test-->
-<script src="{% static 'homepage/js/emoji.js' %}"></script>
-<script src="{% static 'homepage/js/emoji-picker.js' %}"></script>
-<script>
-    var editor = ace.edit("markdown-editor");
-    var textarea = $('#{{ form_homepage.content.id_for_label }}');
-    var preview = $('#md-preview');
-    var emoji_popover = $('#emoji-popover');
-</script>
-<script src="{% static 'homepage/js/md-editor.js' %}"></script>
-
+{{ form_homepage.media }}
 {% endblock %}
