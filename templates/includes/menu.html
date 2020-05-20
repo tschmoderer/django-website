@@ -9,12 +9,12 @@
         </button>
         <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-                {% comment %}
                 <li class="nav-item">
                     <a class="nav-link"
                         href="{% url 'blog:home' profile.user.username %}">{% block nav-blog %}Blog
                         Posts{% endblock %}</a>
                 </li>
+                {% comment %}
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">{% block nav-publication %}Publications{% endblock %}</a>
                 </li>

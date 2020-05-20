@@ -12,3 +12,5 @@ config.yml
 
 media/
 
+!/static/homepage/*
+!/static/blog/*

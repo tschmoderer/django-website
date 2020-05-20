@@ -1,0 +1,49 @@
+{% extends "includes/base.html" %} 
+{% load widget_tweaks %} 
+{% block main_body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center border bg-light">Create an article</h2>
+        </div>
+    </div>
+
+    <form action="{% url 'blog:create_article' profile.user.username %}" method="POST" id="homepage-form">
+        {%csrf_token%}
+        <div class="row mt-2">
+            <div class="col">
+                <!--Title-->
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="far fa-bookmark"></i></span>
+                        </div>
+                        {% render_field form_article.title class="form-control" placeholder=form_article.title.label %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <!--Description-->
+                <h3 class="border bg-light"><i class="fas fa-book" style="padding-left: 10px;"></i> Description</h3>
+                {{ form_article.description }} 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <!--Content-->
+                <h3 class="border bg-light"><i class="fas fa-book-open" style="padding-left: 10px;"></i> Content</h3>
+                {{ form_article.content }} 
+            </div>
+        </div>
+        <!--Button-->
+        <button type="submit" class="btn btn-primary float-right" name="create_article_form">Create</button>
+    </form>
+</div>
+{% endblock %}
+
+<!--Load ace markdonw-->
+{% block custom_scripts %}
+{{ form_article.media }}
+{% endblock %}

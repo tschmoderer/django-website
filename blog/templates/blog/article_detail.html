@@ -1,0 +1,31 @@
+{% extends "includes/base.html" %}
+
+{% block title-page %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <a href="#" onclick="history.back()" class="float-left" style="color: cornflowerblue;"><i
+                class="fas fa-angle-double-left fa-3x"></i></a>
+        <h1 class="text-center">
+            {{ article.title }}
+            {% if user.is_authenticated %}
+            <a href="{% url 'blog:update_article' pk=article.id username=profile.user.username %}"
+                class="btn btn-sm btn-success mt-2 float-right"><i class="fas fa-pen"></i></a>
+            {% endif %}
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div id="markdown-content">{{ article.content }}</div>
+    </div>
+
+    <script type="text/javascript">
+        var dirty  = $('#markdown-content');
+        var config = {ADD_TAGS: ['iframe'], ADD_ATTR: ['allowtransparency', 'frameborder']};
+        var clean  = DOMPurify.sanitize(marked(dirty.text()), config);
+        dirty.html(clean);
+    </script>
+</div>
+{% endblock %}
