@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     # 'site_base',
     'homepage',
     'blog',
+    'deezer',           # see my deezer music 
+    'projects', # differents random projects (mostly in python )
 #    'music',
 
     # to clean file when a new is loaded
