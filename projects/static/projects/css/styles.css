@@ -1,0 +1,16 @@
+.carousel .carousel-indicators li {
+    width: 15px;
+    height: 15px;
+    /* border-radius: 100%; */
+    background-color: #17a2b8;
+    opacity: 0.5;
+ }
+
+.carousel .carousel-indicators li.active {
+    opacity: 1;
+ }
+
+.carousel-indicators {
+        bottom: -75px;
+        padding-bottom: 5px;
+}

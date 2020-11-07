@@ -1,0 +1,98 @@
+{% extends "includes/base.html" %}
+{% load static %}
+
+{% block custom_style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'projects/css/styles.css' %}" />
+{% endblock %}
+
+{% block title-page %}Projects - {{ profile.user.username }}{% endblock %}
+
+{% block sidebar %}
+    {% include 'homepage/homepage_profile.html' %}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-2">
+        My Projects
+    </h1>
+
+    <div class="row">
+        <div class="col-md-10 mx-auto" style="padding-bottom: 5px;">
+            Discover my various projects! 
+        </div>
+    </div>
+    
+    <!--Carousel Wrapper-->
+    <div id="carousel-projects" class="carousel slide" data-ride="carousel">
+        <!--Indicators-->
+        <ol class="carousel-indicators">
+            {% for i,j in last_projects_by_2 %}
+                {% if forloop.first %}
+                <li data-target="#carousel-projects" data-slide-to="{{forloop.counter0}}" class="active"></li>
+                {% else %}
+                <li data-target="#carousel-projects" data-slide-to="{{forloop.counter0}}"></li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+        <!--/.Indicators-->
+
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+            {% for prj1, prj2 in last_projects_by_2 %}
+                {% if forloop.first %}
+                <div class="carousel-item active">
+                {% else %}
+                <div class="carousel-item">
+                {% endif %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img src="{{ prj1.image_url }}" class="card-img-top d-block w-100" alt="{{ prj1.title }}">
+                                <div class="card-body">
+                                <h5 class="card-title">{{ prj1.title }}</h5>
+                                <p class="card-text">{{ prj1.description | safe }}</p>
+                                <a href="{% url prj1.get_link username=profile.user.username %}" class="btn btn-outline-info float-right">Explore more</a>
+                                </div>
+                                <div class="card-footer">
+                                    <strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Last update :</strong> <time datetime="">{{ prj1.date_modif | date:'Y-m-d'}}</time>
+                                </div>
+                            </div>
+                        </div>                       
+
+                        <div class="col-md-6">
+                            {% if not prj2 == None %}
+                            <div class="card">
+                                <img src="{{ prj2.image_url }}" class="card-img-top" alt="{{ prj2.title }}">
+                                <div class="card-body">
+                                <h5 class="card-title">{{ prj2.title }}</h5>
+                                <p class="card-text">{{ prj2.description | safe }}</p>
+                                <a href="{% url prj2.get_link username=profile.user.username %}" class="btn btn-outline-info float-right">Explore more</a>
+                                </div>
+                                <div class="card-footer">
+                                    <strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Last update :</strong> <time datetime="">{{ prj2.date_modif | date:'Y-m-d'}}</time>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        
+
+        <!--Controls-->
+        {%comment%}
+        <a class="carousel-control-prev" href="#ccarousel-projects" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-projects" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        {%endcomment%}
+        <!--/.Controls-->
+    </div>
+    <!--/.Carousel Wrapper-->
+{% endblock %}
+
+{% block custom_scripts %}{% endblock %}
