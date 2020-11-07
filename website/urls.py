@@ -14,7 +14,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='tschmoderer', permanent=False), name='index'),
     path('<str:username>/', include('homepage.urls', namespace='homepage')),
     path('<str:username>/blog/', include('blog.urls', namespace='blog')),
-    path('<str:username>/music/', include('deezer.urls', namespace='deezer')),
+    # path('<str:username>/music/', include('deezer.urls', namespace='deezer')),
     path('<str:username>/projects/', include('projects.urls', namespace='projects')),
     # external tool urls
 ] 
