@@ -3,4 +3,4 @@ from .models import Project
 
 @admin.register(Project)
 class ProjectModelAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'link', 'date_modif')
+    list_display = ('title', 'author', 'date_modif')

@@ -15,13 +15,12 @@ class Project(models.Model):
                 max_length=100, blank=True, default='Project Title',
                 help_text='Set your project title')
 
-    link        = models.CharField(verbose_name='Project url', 
-                max_length=200, blank=True, default='example.org', 
-                help_text='Set your project url')
-
     image       = models.ImageField(verbose_name='Project image', 
                 upload_to=upload_project_pict, blank=True, null=True)
 
+    content     = models.TextField(verbose_name='Project content',
+                blank=True, default='',
+                help_text='Project content')
 
     description = models.TextField(verbose_name='Project description',
                 blank=True, default='',
